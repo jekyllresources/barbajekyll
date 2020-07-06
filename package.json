@@ -13,9 +13,9 @@
   "author": "Antonio Trento",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/barbajeky/barbajeky.github.io/issues"
+    "url": "https://jekyllresources.github.io/barbajekyll/issues"
   },
-  "homepage": "https://github.com/barbajeky/barbajeky.github.io#readme",
+  "homepage": "https://jekyllresources.github.io/barbajekyll#readme",
   "devDependencies": {
     "@commitlint/cli": "8.2.0",
     "@commitlint/config-conventional": "8.2.0",
