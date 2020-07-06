@@ -1,0 +1,9 @@
+I"µ<p>Thereâ€™s always at least one bug, right? :)</p>
+
+<p>Hot on the trails of <a href="/news/2016/05/18/jekyll-3-1-4-released/">v3.1.4</a>, we
+bring you v3.1.5! It fixes one bug around requiring the <code class="language-plaintext highlighter-rouge">ExcerptDrop</code>,
+which only affects Linux. For the gory details, see <a href="https://github.com/jekyll/jekyll/pull/4912">the pull
+request for the fix</a>.</p>
+
+<p>Happy Jekylling!</p>
+:ET

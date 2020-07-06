@@ -1,0 +1,46 @@
+I"�	<p>Front matter is a snippet of <a href="http://yaml.org/">YAML</a> which sits between two
+triple-dashed lines at the top of a file. Front matter is used to set variables
+for the page, for example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">my_number</span><span class="pi">:</span> <span class="m">5</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Front matter variables are available in Liquid under the <code class="language-plaintext highlighter-rouge">page</code> variable. For
+example to output the variable above you would use:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">my_number</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<h2 id="use-front-matter">Use front matter</h2>
+
+<p>Let’s change the <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> on your site to populate using front matter:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+title: Home
+---
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;<span class="p">{{</span><span class="w"> </span><span class="s2">"Hello World!"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">downcase</span><span class="w"> </span><span class="p">}}</span>&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></div>
+
+<p>Note that in order for Jekyll to process any liquid tags on your page,
+you <em>must</em> include front matter on it. The most minimal snippet of front matter
+you can include is:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>You may still be wondering why you’d output it this way as it takes
+more source code than raw HTML. In this next step, you’ll see why we’ve
+been doing this.</p>
+:ET

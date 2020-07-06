@@ -1,0 +1,8 @@
+I"ë<p>This release fixes a bug where multiple Liquid tags were not supported in
+excerpts.</p>
+
+<p>Thanks to @ashmaroli for fixing this issue in <a href="https://github.com/jekyll/jekyll/pull/7250">#7250</a>.</p>
+
+<p>Happy Jekylling!</p>
+
+:ET

@@ -1,0 +1,12 @@
+I"ç<p>Hello Jekyllers!! :wave:</p>
+
+<p>We‚Äôre pleased to announce the release of <code class="language-plaintext highlighter-rouge">v3.7.3</code> which fixes a bug one might encounter while using <code class="language-plaintext highlighter-rouge">Jekyll - 3.7.x</code> along with a
+Jekyll plugin that in turn uses the <code class="language-plaintext highlighter-rouge">I18n</code> library.</p>
+
+<p>When <a href="/news/2018/01/02/jekyll-3-7-0-released/">v3.7.0</a> enhanced our <code class="language-plaintext highlighter-rouge">slugify</code> filter with a <code class="language-plaintext highlighter-rouge">latin</code> option, we also
+hardcoded a default fallback locale for the <code class="language-plaintext highlighter-rouge">I18n</code> library to avoid an exception raised in the event the library fails to find
+any locale. This led to issues with third-party i18n plugins for Jekyll, especially since the default locale got assigned before
+the plugin was loaded, irrespective of whether the <code class="language-plaintext highlighter-rouge">slugify</code> filter was used.</p>
+
+<p>Jekyll will henceforth set the default locale if and only if necessary.</p>
+:ET

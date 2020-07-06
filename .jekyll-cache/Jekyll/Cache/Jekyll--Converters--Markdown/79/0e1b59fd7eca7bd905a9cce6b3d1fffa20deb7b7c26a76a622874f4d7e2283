@@ -1,0 +1,132 @@
+I"�'<p>In addition to the <a href="/docs/variables/">built-in variables</a> available from Jekyll,
+you can specify your own custom data that can be accessed via the <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid
+templating system</a>.</p>
+
+<p>Jekyll supports loading data from <a href="http://yaml.org/">YAML</a>, <a href="http://www.json.org/">JSON</a>, <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>, and <a href="https://en.wikipedia.org/wiki/Tab-separated_values">TSV</a> files located in the <code class="language-plaintext highlighter-rouge">_data</code> directory.
+Note that CSV and TSV files <em>must</em> contain a header row.</p>
+
+<p>This powerful feature allows you to avoid repetition in your templates and to
+set site specific options without changing <code class="language-plaintext highlighter-rouge">_config.yml</code>.</p>
+
+<p>Plugins/themes can also leverage Data Files to set configuration variables.</p>
+
+<h2 id="the-data-folder">The Data Folder</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">_data</code> folder is where you can store additional data for Jekyll to use when
+generating your site. These files must be YAML, JSON, or CSV files (using either
+the <code class="language-plaintext highlighter-rouge">.yml</code>, <code class="language-plaintext highlighter-rouge">.yaml</code>, <code class="language-plaintext highlighter-rouge">.json</code> or <code class="language-plaintext highlighter-rouge">.csv</code> extension), and they will be
+accessible via <code class="language-plaintext highlighter-rouge">site.data</code>.</p>
+
+<h2 id="example-list-of-members">Example: List of members</h2>
+
+<p>Here is a basic example of using Data Files to avoid copy-pasting large chunks
+of code in your Jekyll templates:</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">_data/members.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Eric Mill</span>
+  <span class="na">github</span><span class="pi">:</span> <span class="s">konklone</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Parker Moore</span>
+  <span class="na">github</span><span class="pi">:</span> <span class="s">parkr</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Liu Fengyun</span>
+  <span class="na">github</span><span class="pi">:</span> <span class="s">liufengyun</span>
+</code></pre></div></div>
+
+<p>Or <code class="language-plaintext highlighter-rouge">_data/members.csv</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name,github
+Eric Mill,konklone
+Parker Moore,parkr
+Liu Fengyun,liufengyun
+</code></pre></div></div>
+
+<p>This data can be accessed via <code class="language-plaintext highlighter-rouge">site.data.members</code> (notice that the filename
+determines the variable name).</p>
+
+<p>You can now render the list of members in a template:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ul&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">member</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.data.members</span><span class="w"> </span><span class="p">%}</span>
+  &lt;li&gt;
+    &lt;a href="https://github.com/<span class="p">{{</span><span class="w"> </span><span class="nv">member</span><span class="p">.</span><span class="nv">github</span><span class="w"> </span><span class="p">}}</span>"&gt;
+      <span class="p">{{</span><span class="w"> </span><span class="nv">member</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
+    &lt;/a&gt;
+  &lt;/li&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/ul&gt;
+</code></pre></div></div>
+
+<h2 id="subfolders">Subfolders</h2>
+
+<p>Data files can also be placed in sub-folders of the <code class="language-plaintext highlighter-rouge">_data</code> folder. Each folder
+level will be added to a variable’s namespace. The example below shows how
+GitHub organizations could be defined separately in a file under the <code class="language-plaintext highlighter-rouge">orgs</code>
+folder:</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">_data/orgs/jekyll.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">username</span><span class="pi">:</span> <span class="s">jekyll</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Jekyll</span>
+<span class="na">members</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Tom Preston-Werner</span>
+    <span class="na">github</span><span class="pi">:</span> <span class="s">mojombo</span>
+
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Parker Moore</span>
+    <span class="na">github</span><span class="pi">:</span> <span class="s">parkr</span>
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">_data/orgs/doeorg.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">username</span><span class="pi">:</span> <span class="s">doeorg</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Doe Org</span>
+<span class="na">members</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">John Doe</span>
+    <span class="na">github</span><span class="pi">:</span> <span class="s">jdoe</span>
+</code></pre></div></div>
+
+<p>The organizations can then be accessed via <code class="language-plaintext highlighter-rouge">site.data.orgs</code>, followed by the
+file name:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ul&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">org_hash</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.data.orgs</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">org</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">org_hash</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+  &lt;li&gt;
+    &lt;a href="https://github.com/<span class="p">{{</span><span class="w"> </span><span class="nv">org</span><span class="p">.</span><span class="nv">username</span><span class="w"> </span><span class="p">}}</span>"&gt;
+      <span class="p">{{</span><span class="w"> </span><span class="nv">org</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
+    &lt;/a&gt;
+    (<span class="p">{{</span><span class="w"> </span><span class="nv">org</span><span class="p">.</span><span class="nv">members</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">}}</span> members)
+  &lt;/li&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/ul&gt;
+</code></pre></div></div>
+
+<h2 id="example-accessing-a-specific-author">Example: Accessing a specific author</h2>
+
+<p>Pages and posts can also access a specific data item. The example below shows how to access a specific item:</p>
+
+<p><code class="language-plaintext highlighter-rouge">_data/people.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dave</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">David Smith</span>
+    <span class="na">twitter</span><span class="pi">:</span> <span class="s">DavidSilvaSmith</span>
+</code></pre></div></div>
+
+<p>The author can then be specified as a page variable in a post’s front matter:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+title: sample post
+author: dave
+---
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">people</span><span class="p">[</span><span class="nv">page</span><span class="p">.</span><span class="nv">author</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+&lt;a rel="author"
+  href="https://twitter.com/<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">twitter</span><span class="w"> </span><span class="p">}}</span>"
+  title="<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>"&gt;
+    <span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
+&lt;/a&gt;
+</code></pre></div></div>
+
+<p>For information on how to build robust navigation for your site (especially if you have a documentation website or another type of Jekyll site with a lot of pages to organize), see <a href="/tutorials/navigation/">Navigation</a>.</p>
+:ET

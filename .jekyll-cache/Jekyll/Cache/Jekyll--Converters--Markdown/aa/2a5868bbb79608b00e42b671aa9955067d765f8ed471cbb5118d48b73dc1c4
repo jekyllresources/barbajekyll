@@ -1,0 +1,4 @@
+I"¼<p>Using hooks, your plugin can exercise fine-grained control over various aspects
+of the build process. If your plugin defines any hooks, Jekyll will call them
+at pre-defined points.</p>
+:ET

@@ -1,0 +1,58 @@
+I"î<p>As of version <span class="version-badge" title="This feature is available starting version 2.5.0">2.5.0</span>
+, Jekyll can be extended with plugins which provide
+subcommands for the <code class="language-plaintext highlighter-rouge">jekyll</code> executable. This is possible by including the
+relevant plugins in a <code class="language-plaintext highlighter-rouge">Gemfile</code> group called <code class="language-plaintext highlighter-rouge">:jekyll_plugins</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s2">"my_fancy_jekyll_plugin"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Each <code class="language-plaintext highlighter-rouge">Command</code> must be a subclass of the <code class="language-plaintext highlighter-rouge">Jekyll::Command</code> class and must
+contain one class method: <code class="language-plaintext highlighter-rouge">init_with_program</code>. An example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyNewCommand</span> <span class="o">&lt;</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">Command</span>
+  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+    <span class="k">def</span> <span class="nf">init_with_program</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span>
+      <span class="n">prog</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:new</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+        <span class="n">c</span><span class="p">.</span><span class="nf">syntax</span> <span class="s2">"new [options]"</span>
+        <span class="n">c</span><span class="p">.</span><span class="nf">description</span> <span class="s1">'Create a new Jekyll site.'</span>
+
+        <span class="n">c</span><span class="p">.</span><span class="nf">option</span> <span class="s1">'dest'</span><span class="p">,</span> <span class="s1">'-d DEST'</span><span class="p">,</span> <span class="s1">'Where the site should go.'</span>
+
+        <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">args</span><span class="p">,</span> <span class="n">options</span><span class="o">|</span>
+          <span class="no">Jekyll</span><span class="o">::</span><span class="no">Site</span><span class="p">.</span><span class="nf">new_site_at</span><span class="p">(</span><span class="n">options</span><span class="p">[</span><span class="s1">'dest'</span><span class="p">])</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Commands should implement this single class method:</p>
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code>init_with_program</code></p>
+      </td>
+      <td><p>
+        This method accepts one parameter, the
+        <code><a href="https://github.com/jekyll/mercenary#readme">Mercenary::Program</a></code>
+        instance, which is the Jekyll program itself. Upon the program,
+        commands may be created using the above syntax. For more details,
+        visit the Mercenary repository on GitHub.com.
+      </p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+:ET

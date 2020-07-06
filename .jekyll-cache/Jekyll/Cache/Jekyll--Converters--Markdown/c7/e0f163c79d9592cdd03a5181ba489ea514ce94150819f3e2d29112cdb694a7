@@ -1,0 +1,33 @@
+I"z<p>We’re happy to release a new minor for the new year.
+Here are a few of the latest additions from our contributors:</p>
+
+<ul>
+  <li>LiveReload is available as an option during development: with <code class="language-plaintext highlighter-rouge">jekyll serve --livereload</code> no more manual page refresh. A big thanks to @awood for this feature and to @andreyvit, LiveReload author.</li>
+  <li>New <code class="language-plaintext highlighter-rouge">collections_dir</code> configuration option allows you to store all your <a href="/docs/collections">collections</a> in a single folder. Your source root folder should now look cleaner :sparkles: .</li>
+  <li>If you’re using a <a href="/docs/themes/">gem-based theme</a> in coordination with the <code class="language-plaintext highlighter-rouge">--incremental</code> option, you should notice some significant speed during the regeneration process, we did see build time went down <strong>from 12s to 2s</strong> with @mmistakes <a href="https://github.com/mmistakes/minimal-mistakes">minimal-mistakes theme</a> during our tests.</li>
+  <li>Jekyll will now check to determine whether host machine has internet connection.</li>
+  <li>A new <code class="language-plaintext highlighter-rouge">latin</code> option is available to better <a href="/docs/liquid/filters/#options-for-the-slugify-filter">handle URLs slugs</a>.</li>
+  <li>And of course many bug fixes and updates to our documentation — which you can now search thanks to our friends @Algolia.</li>
+  <li><a href="/docs/history/#v3-7-0">Full history is here</a>.</li>
+</ul>
+
+<p>This release wouldn’t have been possible without all the following people:</p>
+
+<p>Aaron Borden, Alex Tsui, Alex Wood, Alexey Pelykh, Andrew Dassonville, Angelika Tyborska, Ankit Singhaniya, Ashwin Maroli, bellvat, Brandon Dusseau, Chris Finazzo, Doug Beney, Dr. Wolfram Schroers, Edward Shen, Florian Thomas, Frank Taillandier, Gert-jan Theunissen, Goulven Champenois, János Rusiczki, Jed Fox, Johannes Müller, Jon Anning, Jonathan Hooper, Jordon Bedwell, Junko Suzuki, Kacper Duras, Kenton Hansen, Kewin Dousse, Matt Rogers, Maximiliano Kotvinsky, mrHoliday, Olivia, Parker Moore, Pat Hawks, Sebastian Kulig, Vishesh Ruparelia, Xiaoiver and Yashu Mittal.</p>
+
+<p>A big thanks to everyone!</p>
+
+<p>Oh, one last thing…</p>
+
+<h3 id="pray-upgrade-your-ruby">:pray: upgrade your Ruby</h3>
+
+<p>Prepare for the next major update, as next major version Jekyll 4.0 will drop support for Ruby 2.1 and 2.2.</p>
+
+<blockquote>
+  <p>Ruby 2.2 is now under the state of the security maintenance phase, until the end of the March of 2018. After the date, maintenance of Ruby 2.2 will be ended. We recommend you start planning migration to newer versions of Ruby, such as 2.4 or 2.3. — <a href="https://www.ruby-lang.org/en/news/2017/12/14/ruby-2-2-9-released/">Ruby Core Team</a></p>
+</blockquote>
+
+<p>We strongly encourage you to upgrade to at least Ruby 2.4.x <a href="https://pages.github.com/versions/">like our friends at GitHub Pages</a> or even go with <a href="https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/">Ruby 2.5</a>.</p>
+
+<p>Happy new year to all from the Jekyll team!</p>
+:ET

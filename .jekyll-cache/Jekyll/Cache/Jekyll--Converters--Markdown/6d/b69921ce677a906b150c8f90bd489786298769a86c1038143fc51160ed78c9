@@ -1,0 +1,44 @@
+I"�
+<p>Another one-PR patch update, though without the same <a href="/news/2017/03/02/jekyll-3-4-1-released/">lessons as for the
+previous release</a>.</p>
+
+<p>This release includes a beneficial change for a number of plugins:
+<strong>static files now respect front matter defaults</strong>.</p>
+
+<p>You might be asking yourself: “why would static files, files that are
+static files explicitly because they <em>don’t</em> have front matter, want
+to respect front matter?” That’s a great question. Let me illustrate
+with an example.</p>
+
+<p>Let’s look at <code class="language-plaintext highlighter-rouge">jekyll-sitemap</code>. This plugin generates a list of documents,
+pages, and static files, and some metadata for them in an XML file for a
+Google/Yahoo/Bing/DuckDuckGo crawler to consume. If you don’t want a given
+file in this list, you set <code class="language-plaintext highlighter-rouge">sitemap: false</code> in front matter. But
+what about static files, which don’t have front matter? Before this
+release, they could not be excluded because they had no properties in YAML
+other than <a href="https://github.com/jekyll/jekyll/blob/v3.4.1/lib/jekyll/static_file.rb#L98-L106">the ones we explicitly assigned</a>.
+So if you had a PDF you didn’t want to be in your sitemap, you couldn’t use
+<code class="language-plaintext highlighter-rouge">jekyll-sitemap</code>.</p>
+
+<p>With this release, you can now set <a href="/docs/configuration/front-matter-defaults/">front matter
+defaults</a> for static files:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pdfs/"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">sitemap</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<p>Now, for every file in the Liquid <code class="language-plaintext highlighter-rouge">site.static_files</code> loop which is in the
+folder <code class="language-plaintext highlighter-rouge">pdfs/</code>, you’ll see <code class="language-plaintext highlighter-rouge">sitemap</code> equal to <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<p>Many thanks to @benbalter for coming up with the solution and ensuring
+sitemaps everywhere are filled with just the right content.</p>
+
+<p>As always, if you notice any bugs, please search the issues and file one if
+you can’t find another related to your issue.</p>
+
+<p>Happy Jekylling!</p>
+:ET

@@ -1,0 +1,27 @@
+I"=<p>Upgrading from an older version of Jekyll? Upgrading to a new major version of
+Jekyll (e.g. from v2.x to v3.x) may cause some headaches. Take the following
+guides to aid your upgrade:</p>
+
+<ul>
+  <li><a href="/docs/upgrading/0-to-2/">From 0.x to 1.x and 2.x</a></li>
+  <li><a href="/docs/upgrading/2-to-3/">From 2.x to 3.x</a></li>
+  <li><a href="/docs/upgrading/3-to-4/">From 3.x to 4.x</a></li>
+</ul>
+
+<h2 id="minor-updates">Minor updates</h2>
+
+<div class="note">
+  <h5>Stay Up to Date</h5>
+  <p>We recommend you update Jekyll as often as possible to benefit from
+  the latest bug fixes.
+  </p>
+</div>
+
+<p>If you followed our setup recommendations and installed <a href="http://bundler.io/">Bundler</a>, run <code class="language-plaintext highlighter-rouge">bundle update jekyll</code> or simply <code class="language-plaintext highlighter-rouge">bundle update</code> and all your gems will
+update to the latest versions.</p>
+
+<p>If you don’t have Bundler installed, run <code class="language-plaintext highlighter-rouge">gem update jekyll</code>.</p>
+
+<p>The procedure is similar <a href="https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/#keeping-your-site-up-to-date-with-the-github-pages-gem">if you use the <code class="language-plaintext highlighter-rouge">github-pages</code>
+gem</a>.</p>
+:ET

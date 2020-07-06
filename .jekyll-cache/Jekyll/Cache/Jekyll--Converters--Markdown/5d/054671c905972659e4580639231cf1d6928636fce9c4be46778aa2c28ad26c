@@ -1,0 +1,36 @@
+I"�
+<p>Liquid’s response to errors can be configured by setting <code class="language-plaintext highlighter-rouge">error_mode</code>. The
+options are</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">lax</code> — Ignore all errors.</li>
+  <li><code class="language-plaintext highlighter-rouge">warn</code> — Output a warning on the console for each error. (default)</li>
+  <li><code class="language-plaintext highlighter-rouge">strict</code> — Output an error message and stop the build.</li>
+</ul>
+
+<p>Within _config.yml, the default configuration is as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">liquid</span><span class="pi">:</span>
+  <span class="na">error_mode</span><span class="pi">:</span> <span class="s">warn</span>
+</code></pre></div></div>
+
+<p>The above example depicts the “warn” value, which is already set by default- <code class="language-plaintext highlighter-rouge">error_mode: warn</code>. This results in any issues being called out during the build process however will continue to build if possible.</p>
+
+<p>You can also configure Liquid’s renderer to catch non-assigned variables and
+non-existing filters by setting <code class="language-plaintext highlighter-rouge">strict_variables</code> and / or <code class="language-plaintext highlighter-rouge">strict_filters</code>
+to <code class="language-plaintext highlighter-rouge">true</code> respectively. <span class="version-badge" title="This feature is available starting version 3.8.0">3.8.0</span></p>
+
+<p>Do note that while <code class="language-plaintext highlighter-rouge">error_mode</code> configures Liquid’s parser, the <code class="language-plaintext highlighter-rouge">strict_variables</code>
+and <code class="language-plaintext highlighter-rouge">strict_filters</code> options configure Liquid’s renderer and are consequently,
+mutually exclusive.</p>
+
+<p>An example of setting these variables within _config.yml is as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">liquid</span><span class="pi">:</span>
+  <span class="na">error_mode</span><span class="pi">:</span> <span class="s">strict</span>
+  <span class="na">strict_variables</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">strict_filters</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Configuring as described above will stop your build/serve from happening and call out the offending error and halt. This is helpful when desiring to catch liquid-related issues by stopping the build or serve process and allowing you to deal with any issues.</p>
+:ET

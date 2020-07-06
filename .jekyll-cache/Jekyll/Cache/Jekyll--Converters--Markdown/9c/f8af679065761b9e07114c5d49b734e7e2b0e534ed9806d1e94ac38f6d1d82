@@ -1,0 +1,11 @@
+I"D<p>Hello Jekyllers!!</p>
+
+<p>Today we are releasing <code class="language-plaintext highlighter-rouge">v3.8.2</code>, which fixes the way Jekyll generates excerpts
+for posts when the first paragraph of the post contains Liquid tags that take
+advantage of <a href="https://shopify.github.io/liquid/basics/whitespace/">Liquid’s whitespace control feature</a>.</p>
+
+<p>Big thanks to @kylebarbour, who first reported this issue and also very quickly
+submitted a fix. Also thanks to @nickskalkin for making sure that we are using
+the latest version of Rubocop to lint our code.</p>
+
+:ET

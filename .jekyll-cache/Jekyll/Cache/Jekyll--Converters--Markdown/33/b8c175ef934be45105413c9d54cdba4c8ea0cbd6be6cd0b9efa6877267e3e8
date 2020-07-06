@@ -1,0 +1,149 @@
+I"1<p>Plugins allow you to extend Jekyll’s behavior to fit your needs. There are six
+types of plugins in Jekyll.</p>
+
+<h2 id="generators">Generators</h2>
+
+<p><a href="/docs/plugins/generators/">Generators</a> create content on your site.
+For example:</p>
+
+<ul>
+  <li><a href="https://github.com/jekyll/jekyll-feed">jekyll-feed</a> creates an Atom feed of
+blog posts.</li>
+  <li><a href="https://github.com/jekyll/jekyll-archives">jekyll-archives</a> creates archive
+pages for blog categories and tags.</li>
+  <li><a href="https://github.com/jekyll/jekyll-sitemap">jekyll-sitemap</a> creates a sitemap.</li>
+</ul>
+
+<h2 id="converters">Converters</h2>
+
+<p><a href="/docs/plugins/converters/">Converters</a> change a markup language into another
+format. For example:</p>
+
+<ul>
+  <li><a href="https://github.com/jekyll/jekyll-textile-converter">jekyll-textile-converter</a>
+converts textile to HTML.</li>
+  <li><a href="https://github.com/jekyll/jekyll-coffeescript">jekyll-coffeescript</a> converts
+Coffeescript to JavaScript.</li>
+  <li><a href="https://github.com/jekyll/jekyll-opal">jekyll-opal</a> converts Ruby to
+JavaScript.</li>
+</ul>
+
+<h2 id="commands">Commands</h2>
+
+<p><a href="/docs/plugins/commands/">Commands</a> extend the <code class="language-plaintext highlighter-rouge">jekyll</code> executable with
+subcommands. For example:</p>
+
+<ul>
+  <li><a href="https://github.com/jekyll/jekyll-compose">jekyll-compose</a> adds subcommands
+for creating a post, page or draft.</li>
+</ul>
+
+<h2 id="tags">Tags</h2>
+
+<p><a href="/docs/plugins/tags/">Tags</a> create custom Liquid tags. For example:</p>
+
+<ul>
+  <li><a href="https://github.com/dommmel/jekyll-youtube">jekyll-youtube</a> embeds a YouTube
+video.</li>
+  <li><a href="https://github.com/samrayner/jekyll-asset-path-plugin">jekyll-asset-path-plugin</a>
+outputs a relative URL for assets.</li>
+  <li><a href="https://github.com/sectore/jekyll-swfobject">jekyll-swfobject</a> embeds a SWF
+object.</li>
+</ul>
+
+<h2 id="filters">Filters</h2>
+
+<p><a href="/docs/plugins/filters/">Filters</a> create custom Liquid filters. For example:</p>
+
+<ul>
+  <li><a href="https://github.com/markets/jekyll-timeago">jekyll-time-ago</a> - The distance
+between two dates in words.</li>
+  <li><a href="https://github.com/toshimaru/jekyll-toc">jekyll-toc</a> - Generates a table of
+content.</li>
+  <li><a href="https://github.com/vwochnik/jekyll-email-protect">jekyll-email-protect</a> -
+Obfuscates emails to protect them from spam bots.</li>
+</ul>
+
+<h2 id="hooks">Hooks</h2>
+
+<p><a href="/docs/plugins/hooks/">Hooks</a> give fine-grained control to extend the build
+process. For example:</p>
+
+<ul>
+  <li><a href="https://github.com/jekyll/jemoji">jemoji</a> Display emojis :+1:</li>
+  <li><a href="https://github.com/jekyll/jekyll-mentions">jekyll-mentions</a> turns mentions @jekyll into links</li>
+  <li><a href="https://github.com/jeffreytse/jekyll-spaceship">jekyll-spaceship</a> - advanced example. Provides
+powerful supports for table, mathjax, plantuml, video, etc.</li>
+</ul>
+
+<h2 id="flags">Flags</h2>
+
+<p>There are two flags to be aware of when writing a plugin:</p>
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code>safe</code></p>
+      </td>
+      <td>
+        <p>
+          A boolean flag that informs Jekyll whether this plugin may be safely
+          executed in an environment where arbitrary code execution is not
+          allowed. This is used by GitHub Pages to determine which core plugins
+          may be used, and which are unsafe to run. If your plugin does not
+          allow for arbitrary code execution, set this to <code>true</code>.
+          GitHub Pages still won’t load your plugin, but if you submit it for
+          inclusion in core, it’s best for this to be correct!
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>priority</code></p>
+      </td>
+      <td>
+        <p>
+          This flag determines what order the plugin is loaded in. Valid values
+          are: <code>:lowest</code>, <code>:low</code>, <code>:normal</code>,
+          <code>:high</code>, and <code>:highest</code>. Highest priority
+          matches are applied first, lowest priority are applied last.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>To use one of the example plugins above as an illustration, here is how you’d
+specify these two flags:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="k">class</span> <span class="nc">UpcaseConverter</span> <span class="o">&lt;</span> <span class="no">Converter</span>
+    <span class="n">safe</span> <span class="kp">true</span>
+    <span class="n">priority</span> <span class="ss">:low</span>
+    <span class="o">...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<p>The guides help you with the specifics of creating plugins. We also have some
+recommended best practices to help structure your plugin.</p>
+
+<p>We recommend using a <a href="/docs/ruby-101/#gems">gem</a> for your plugin. This will
+help you manage dependencies, keep separation from your site source code and
+allow you to share functionality across multiple projects. For tips on creating
+a gem take a look a the
+<a href="https://guides.rubygems.org/make-your-own-gem/">Ruby gems guide</a> or look
+through the source code of an existing plugin such as
+<a href="https://github.com/jekyll/jekyll-feed">jekyll-feed</a>.</p>
+:ET

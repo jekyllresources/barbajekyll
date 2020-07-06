@@ -1,0 +1,98 @@
+I"?<p>If you’d like to include custom liquid tags in your site, you can do so by
+hooking into the tagging system. Built-in examples added by Jekyll include the
+<code class="language-plaintext highlighter-rouge">highlight</code> and <code class="language-plaintext highlighter-rouge">include</code> tags. Below is an example of a custom liquid tag that
+will output the time the page was rendered:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="k">class</span> <span class="nc">RenderTimeTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+      <span class="k">super</span>
+      <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="p">.</span><span class="nf">register_tag</span><span class="p">(</span><span class="s1">'render_time'</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">RenderTimeTag</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>At a minimum, liquid tags must implement:</p>
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code>render</code></p>
+      </td>
+      <td>
+        <p>Outputs the content of the tag.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>You must also register the custom tag with the Liquid template engine as
+follows:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="p">.</span><span class="nf">register_tag</span><span class="p">(</span><span class="s1">'render_time'</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">RenderTimeTag</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In the example above, we can place the following tag anywhere in one of our
+pages:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;<span class="p">{%</span><span class="w"> </span><span class="nt">render_time</span><span class="w"> </span>page<span class="w"> </span>rendered<span class="w"> </span><span class="na">at</span><span class="o">:</span><span class="w"> </span><span class="p">%}</span>&lt;/p&gt;
+</code></pre></div></div>
+
+<p>And we would get something like this on the page:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>page rendered at: Tue June 22 23:38:47 –0500 2010<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<h2 id="tag-blocks">Tag Blocks</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">render_time</code> tag seen above can also be rewritten as a tag block by
+inheriting the <code class="language-plaintext highlighter-rouge">Liquid::Block</code> class. Look at the example below:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="k">class</span> <span class="nc">RenderTimeTagBlock</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Block</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+      <span class="n">text</span> <span class="o">=</span> <span class="k">super</span>
+      <span class="s2">"&lt;p&gt;</span><span class="si">#{</span><span class="n">text</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="si">}</span><span class="s2">&lt;/p&gt;"</span>
+    <span class="k">end</span>
+
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="p">.</span><span class="nf">register_tag</span><span class="p">(</span><span class="s1">'render_time'</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">RenderTimeTagBlock</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We can now use the tag block anywhere:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">render_time</span><span class="w"> </span><span class="p">%}</span>
+page rendered at:
+<span class="p">{%</span><span class="w"> </span><span class="nt">endrender_time</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>And we would still get the same output as above on the page:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>page rendered at: Tue June 22 23:38:47 –0500 2010<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p class="note info">In the above example, the tag block and the tag are both registered with
+the name <code>render_time</code>, but to register a tag and a tag block using
+the same name in the same project is not recommended as this may lead to
+conflicts.</p>
+:ET

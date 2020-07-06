@@ -1,0 +1,231 @@
+I"�E<p>Let’s look at fleshing out authors so each author has their own page with a
+blurb and the posts they’ve published.</p>
+
+<p>To do this you’ll use collections. Collections are similar to posts except the
+content doesn’t have to be grouped by date.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>To set up a collection you need to tell Jekyll about it. Jekyll configuration
+happens in a file called <code class="language-plaintext highlighter-rouge">_config.yml</code> (by default).</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">_config.yml</code> in the root with the following:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">collections</span><span class="pi">:</span>
+  <span class="na">authors</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<p>To (re)load the configuration, restart the jekyll server. Press <code class="language-plaintext highlighter-rouge">Ctrl</code>+<code class="language-plaintext highlighter-rouge">C</code> in your terminal to stop the server, and then <code class="language-plaintext highlighter-rouge">jekyll serve</code> to restart it.</p>
+
+<h2 id="add-authors">Add authors</h2>
+
+<p>Documents (the items in a collection) live in a folder in the root of the site
+named  <code class="language-plaintext highlighter-rouge">_*collection_name*</code>. In this case, <code class="language-plaintext highlighter-rouge">_authors</code>.</p>
+
+<p>Create a document for each author:</p>
+
+<p><code class="language-plaintext highlighter-rouge">_authors/jill.md</code>:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">short_name</span><span class="pi">:</span> <span class="s">jill</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Jill Smith</span>
+<span class="na">position</span><span class="pi">:</span> <span class="s">Chief Editor</span>
+<span class="nn">---</span>
+Jill is an avid fruit grower based in the south of France.
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">_authors/ted.md</code>:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">short_name</span><span class="pi">:</span> <span class="s">ted</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Ted Doe</span>
+<span class="na">position</span><span class="pi">:</span> <span class="s">Writer</span>
+<span class="nn">---</span>
+Ted has been eating fruit since he was baby.
+</code></pre></div></div>
+
+<h2 id="staff-page">Staff page</h2>
+
+<p>Let’s add a page which lists all the authors on the site. Jekyll makes the
+collection available at <code class="language-plaintext highlighter-rouge">site.authors</code>.</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">staff.html</code> and iterate over <code class="language-plaintext highlighter-rouge">site.authors</code> to output all the staff:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+title: Staff
+---
+&lt;h1&gt;Staff&lt;/h1&gt;
+
+&lt;ul&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">author</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.authors</span><span class="w"> </span><span class="p">%}</span>
+    &lt;li&gt;
+      &lt;h2&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>&lt;/h2&gt;
+      &lt;h3&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">position</span><span class="w"> </span><span class="p">}}</span>&lt;/h3&gt;
+      &lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">content</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">markdownify</span><span class="w"> </span><span class="p">}}</span>&lt;/p&gt;
+    &lt;/li&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/ul&gt;
+</code></pre></div></div>
+
+<p>Since the content is markdown, you need to run it through the
+<code class="language-plaintext highlighter-rouge">markdownify</code> filter. This happens automatically when outputting using
+<code class="language-plaintext highlighter-rouge">{{ content }}</code> in a layout.</p>
+
+<p>You also need a way to navigate to this page through the main navigation. Open
+<code class="language-plaintext highlighter-rouge">_data/navigation.yml</code> and add an entry for the staff page:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Home</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">About</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/about.html</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Blog</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/blog.html</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Staff</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/staff.html</span>
+</code></pre></div></div>
+
+<h2 id="output-a-page">Output a page</h2>
+
+<p>By default, collections do not output a page for documents. In this case we
+want each author to have their own page so let’s tweak the collection
+configuration.</p>
+
+<p>Open <code class="language-plaintext highlighter-rouge">_config.yml</code> and add <code class="language-plaintext highlighter-rouge">output: true</code> to the author collection
+configuration:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">collections</span><span class="pi">:</span>
+  <span class="na">authors</span><span class="pi">:</span>
+    <span class="na">output</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Restart the jekyll server once more for the configuration changes to take effect.</p>
+
+<p>You can link to the output page using <code class="language-plaintext highlighter-rouge">author.url</code>.</p>
+
+<p>Add the link to the <code class="language-plaintext highlighter-rouge">staff.html</code> page:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+title: Staff
+---
+&lt;h1&gt;Staff&lt;/h1&gt;
+
+&lt;ul&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">author</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.authors</span><span class="w"> </span><span class="p">%}</span>
+    &lt;li&gt;
+      &lt;h2&gt;&lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;&lt;/h2&gt;
+      &lt;h3&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">position</span><span class="w"> </span><span class="p">}}</span>&lt;/h3&gt;
+      &lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">content</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">markdownify</span><span class="w"> </span><span class="p">}}</span>&lt;/p&gt;
+    &lt;/li&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/ul&gt;
+</code></pre></div></div>
+
+<p>Just like posts you’ll need to create a layout for authors.</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">_layouts/author.html</code> with the following content:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+---
+&lt;h1&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>&lt;/h1&gt;
+&lt;h2&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">position</span><span class="w"> </span><span class="p">}}</span>&lt;/h2&gt;
+
+<span class="p">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<h2 id="front-matter-defaults">Front matter defaults</h2>
+
+<p>Now you need to configure the author documents to use the <code class="language-plaintext highlighter-rouge">author</code> layout. You
+could do this in the front matter like we have previously but that’s getting
+repetitive.</p>
+
+<p>What you really want is all posts to automatically have the post
+layout, authors to have author and everything else to use the default.</p>
+
+<p>You can achieve this by using <a href="/docs/configuration/front-matter-defaults/">front matter defaults</a>
+in <code class="language-plaintext highlighter-rouge">_config.yml</code>. You set a scope of what the default applies to, then the
+default front matter you’d like.</p>
+
+<p>Add defaults for layouts to your <code class="language-plaintext highlighter-rouge">_config.yml</code>,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">collections</span><span class="pi">:</span>
+  <span class="na">authors</span><span class="pi">:</span>
+    <span class="na">output</span><span class="pi">:</span> <span class="no">true</span>
+
+<span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">authors"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">author"</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">posts"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">post"</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">default"</span>
+</code></pre></div></div>
+
+<p>Now you can remove layout from the front matter of all pages and posts. Note
+that any time you update <code class="language-plaintext highlighter-rouge">_config.yml</code> you’ll need to restart Jekyll for the
+changes to take effect.</p>
+
+<h2 id="list-authors-posts">List author’s posts</h2>
+
+<p>Let’s list the posts an author has published on their page. To do
+this you need to match the author <code class="language-plaintext highlighter-rouge">short_name</code> to the post <code class="language-plaintext highlighter-rouge">author</code>. You
+use this to filter the posts by author.</p>
+
+<p>Iterate over this filtered list in <code class="language-plaintext highlighter-rouge">_layouts/author.html</code> to output the
+author’s posts:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+---
+&lt;h1&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>&lt;/h1&gt;
+&lt;h2&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">position</span><span class="w"> </span><span class="p">}}</span>&lt;/h2&gt;
+
+<span class="p">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">}}</span>
+
+&lt;h2&gt;Posts&lt;/h2&gt;
+&lt;ul&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">filtered_posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s1">'author'</span><span class="p">,</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">short_name</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">filtered_posts</span><span class="w"> </span><span class="p">%}</span>
+    &lt;li&gt;&lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;&lt;/li&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/ul&gt;
+</code></pre></div></div>
+
+<h2 id="link-to-authors-page">Link to authors page</h2>
+
+<p>The posts have a reference to the author so let’s link it to the author’s page.
+You can do this using a similar filtering technique in <code class="language-plaintext highlighter-rouge">_layouts/post.html</code>:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+---
+&lt;h1&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/h1&gt;
+
+&lt;p&gt;
+  <span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date_to_string</span><span class="w"> </span><span class="p">}}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">authors</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s1">'short_name'</span><span class="p">,</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">author</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">author</span><span class="w"> </span><span class="p">%}</span>
+    - &lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">author</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+&lt;/p&gt;
+
+<span class="p">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>Open up <a href="http://localhost:4000" target="_blank" data-proofer-ignore="">http://localhost:4000</a> and
+have a look at the staff page and the author links on posts to check everything
+is linked together correctly.</p>
+
+<p>In the next and final step of this tutorial, we’ll add polish to the site and
+get it ready for a production deployment.</p>
+:ET

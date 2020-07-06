@@ -1,0 +1,39 @@
+I"<p>Jekyll is a static site generator. You give it text written in your
+favorite markup language and it uses layouts to create a static website. You can
+tweak how you want the site URLs to look, what data gets displayed on the
+site, and more.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>See <a href="/docs/installation/#requirements">requirements</a>.</p>
+
+<h2 id="instructions">Instructions</h2>
+
+<ol>
+  <li>Install a full <a href="/docs/installation/">Ruby development environment</a>.</li>
+  <li>Install Jekyll and <a href="/docs/ruby-101/#bundler">bundler</a> <a href="/docs/ruby-101/#gems">gems</a>.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install jekyll bundler
+</code></pre></div>    </div>
+  </li>
+  <li>Create a new Jekyll site at <code class="language-plaintext highlighter-rouge">./myblog</code>.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new myblog
+</code></pre></div>    </div>
+  </li>
+  <li>Change into your new directory.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd myblog
+</code></pre></div>    </div>
+  </li>
+  <li>Build the site and make it available on a local server.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll serve
+</code></pre></div>    </div>
+  </li>
+  <li>Browse to <a href="http://localhost:4000" target="_blank">http://localhost:4000</a></li>
+</ol>
+
+<p>If you encounter any errors during this process, see the
+<a href="/docs/troubleshooting/#configuration-problems">troubleshooting</a> page. Also,
+make sure you’ve installed the development headers and other prerequisites as
+mentioned on the <a href="/docs/installation/#requirements">requirements</a> page.</p>
+
+<p>Note: Installation might be different depending on your operating system. See our <a href="https://jekyllrb.com/docs/installation/#guides">guides</a> for OS specific instructions.</p>
+:ET

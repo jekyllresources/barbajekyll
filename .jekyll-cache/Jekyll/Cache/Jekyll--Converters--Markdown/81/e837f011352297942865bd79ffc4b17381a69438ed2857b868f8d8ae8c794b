@@ -1,0 +1,5 @@
+I"e<p>Jekyll 1.4.3 contains two <strong>critical</strong> security fixes. If you run Jekyll locally
+and do not run Jekyll in “safe” mode (e.g. you do not build Jekyll sites on behalf
+of others), you are not affected and are not required to update at this time.
+(<a href="https://github.com/jekyllresources/barbajekyll/pull/1944">See pull request.</a>)</p>
+:ET

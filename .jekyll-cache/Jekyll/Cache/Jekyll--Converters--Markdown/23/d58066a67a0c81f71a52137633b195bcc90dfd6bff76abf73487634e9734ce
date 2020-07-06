@@ -1,0 +1,5 @@
+I"<p>You can test your website build against one or more versions of Ruby.
+The following guide will show you how to set up a free build environment on
+<a href="https://travis-ci.org/">Travis</a>, with <a href="https://github.com/">GitHub</a> integration for pull requests.</p>
+
+:ET

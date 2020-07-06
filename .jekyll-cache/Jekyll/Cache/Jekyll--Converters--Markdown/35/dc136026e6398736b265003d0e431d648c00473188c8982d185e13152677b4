@@ -1,0 +1,13 @@
+I"3<p>Happy May Day :tada:</p>
+
+<p>The Jekyll team is happy to announce the release of <code class="language-plaintext highlighter-rouge">v3.8.1</code>, which fixes
+a couple of bugs that were introduced two weeks ago in <code class="language-plaintext highlighter-rouge">v3.8.0</code>. If you have
+experienced trouble regarding post excerpts or non-published posts, this release
+should be the remedy. Thanks to @Chaosed0 and @domLocalHeroes for originally
+reporting these issues, and to @ashmaroli for fixing them so quickly.</p>
+
+<p>As a reminder, we have started work on Jekyll 4.0. If there are any
+features that you would love to see added to Jekyll, or any pain points you
+would like to see removed, please do add your ideas to the <a href="https://github.com/jekyll/jekyll/issues/6948">Jekyll 4.0 idea
+list</a>.</p>
+:ET

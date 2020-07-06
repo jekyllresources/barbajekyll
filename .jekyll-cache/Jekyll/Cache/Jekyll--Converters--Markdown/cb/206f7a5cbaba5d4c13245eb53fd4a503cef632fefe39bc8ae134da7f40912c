@@ -1,0 +1,76 @@
+I"�<p>Websites typically have more than one page and this website is no different.</p>
+
+<p>Jekyll supports <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a>
+as well as HTML for pages. Markdown is a great choice for pages with a simple
+content structure (just paragraphs, headings and images), as it’s less verbose
+than raw HTML. Let’s try it out on the next page.</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">about.md</code> in the root.</p>
+
+<p>For the structure you could copy <code class="language-plaintext highlighter-rouge">index.html</code> and modify it for the about page.
+The problem with doing this is duplicate code. Let’s say you wanted to add a
+stylesheet to your site, you would have to go to each page and add it to the
+<code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>. It might not sound so bad for a two page site, imagine doing it
+for 100 pages. Even simple changes will take a long time to make.</p>
+
+<h2 id="creating-a-layout">Creating a layout</h2>
+
+<p>Using a layout is a much better choice. Layouts are templates that wrap around
+your content. They live in a directory called <code class="language-plaintext highlighter-rouge">_layouts</code>.</p>
+
+<p>Create your first layout at <code class="language-plaintext highlighter-rouge">_layouts/default.html</code> with the following content:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    <span class="p">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">}}</span>
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></div>
+
+<p>You’ll notice this is almost identical to <code class="language-plaintext highlighter-rouge">index.html</code> except there’s
+no front matter and the content of the page is replaced with a <code class="language-plaintext highlighter-rouge">content</code>
+variable. <code class="language-plaintext highlighter-rouge">content</code> is a special variable which has the value of the rendered
+content of the page it’s called on.</p>
+
+<p>To have <code class="language-plaintext highlighter-rouge">index.html</code> use this layout, you can set a <code class="language-plaintext highlighter-rouge">layout</code> variable in front
+matter. The layout wraps around the content of the page so all you need in
+<code class="language-plaintext highlighter-rouge">index.html</code> is:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+title: Home
+---
+&lt;h1&gt;<span class="p">{{</span><span class="w"> </span><span class="s2">"Hello World!"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">downcase</span><span class="w"> </span><span class="p">}}</span>&lt;/h1&gt;
+</code></pre></div></div>
+
+<p>After doing this, the output will be exactly the same as before. Note that you
+can access the <code class="language-plaintext highlighter-rouge">page</code> front matter from the layout. In this case <code class="language-plaintext highlighter-rouge">title</code> is
+set in the index page’s front matter but is output in the layout.</p>
+
+<h2 id="about-page">About page</h2>
+
+<p>Back to the about page, instead of copying from <code class="language-plaintext highlighter-rouge">index.html</code>, you can use the
+layout.</p>
+
+<p>Add the following to <code class="language-plaintext highlighter-rouge">about.md</code>:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">default</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">About</span>
+<span class="nn">---</span>
+<span class="gh"># About page</span>
+
+This page tells you a little bit about me.
+</code></pre></div></div>
+
+<p>Open <a href="http://localhost:4000/about.html" target="_blank" data-proofer-ignore="">http://localhost:4000/about.html</a>
+in your browser and view your new page.</p>
+
+<p>Congratulations, you now have a two page website! But how do you
+navigate from one page to another? Keep reading to find out.</p>
+:ET

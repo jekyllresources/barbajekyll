@@ -1,0 +1,5 @@
+I"e<p>Jekyll includes a caching API, which is used both internally as well as exposed
+for plugins, which can be used to cache the output of deterministic functions to
+speed up site generation. This cache will be persistent across builds, but
+cleared when Jekyll detects any changes to <code class="language-plaintext highlighter-rouge">_config.yml</code>.</p>
+:ET

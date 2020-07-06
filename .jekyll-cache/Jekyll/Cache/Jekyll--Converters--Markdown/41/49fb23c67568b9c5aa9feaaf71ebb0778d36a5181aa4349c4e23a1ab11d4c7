@@ -1,0 +1,8 @@
+I"l<p>Sites built using Jekyll can be deployed in a large number of ways due to the static nature of the generated output. Here’s some of the most common ways:</p>
+
+<ul>
+  <li><a href="/docs/deployment/manual/">Manually</a></li>
+  <li><a href="/docs/deployment/automated/">Automated</a></li>
+  <li><a href="/docs/deployment/third-party/">Third Party</a></li>
+</ul>
+:ET

@@ -1,0 +1,66 @@
+I"�<p>Liquid is where Jekyll starts to get more interesting. Liquid is a templating
+language which has three main parts: <a href="#objects">objects</a>, <a href="#tags">tags</a> and
+<a href="#filters">filters</a>.</p>
+
+<h2 id="objects">Objects</h2>
+
+<p>Objects tell Liquid where to output content. They’re denoted by double curly
+braces: <code class="language-plaintext highlighter-rouge">{{</code> and <code class="language-plaintext highlighter-rouge">}}</code>. For example:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>Outputs a variable called <code class="language-plaintext highlighter-rouge">page.title</code> on the page.</p>
+
+<h2 id="tags">Tags</h2>
+
+<p>Tags create the logic and control flow for templates. They are denoted by curly
+braces and percent signs: <code class="language-plaintext highlighter-rouge">{%</code> and
+<code class="language-plaintext highlighter-rouge">%}</code>. For example:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">show_sidebar</span><span class="w"> </span><span class="p">%}</span>
+  &lt;div class="sidebar"&gt;
+    sidebar content
+  &lt;/div&gt;
+<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>Outputs the sidebar if <code class="language-plaintext highlighter-rouge">page.show_sidebar</code> is true. You can learn more about the
+tags available to Jekyll <a href="/docs/liquid/tags/">here</a>.</p>
+
+<h2 id="filters">Filters</h2>
+
+<p>Filters change the output of a Liquid object. They are used within an output
+and are separated by a <code class="language-plaintext highlighter-rouge">|</code>. For example:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="s2">"hi"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">capitalize</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>Outputs <code class="language-plaintext highlighter-rouge">Hi</code>. You can learn more about the filters available to Jekyll
+<a href="/docs/liquid/filters/">here</a>.</p>
+
+<h2 id="use-liquid">Use Liquid</h2>
+
+<p>Now it’s your turn, change the Hello World! on your page to output as lowercase:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+&lt;h1&gt;<span class="p">{{</span><span class="w"> </span><span class="s2">"Hello World!"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">downcase</span><span class="w"> </span><span class="p">}}</span>&lt;/h1&gt;
+...
+</code></pre></div></div>
+
+<p>To get our changes processed by Jekyll we need to add <a href="../03-front-matter/">front matter</a> to the top of the page:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="c1"># front matter tells Jekyll to process Liquid</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Our “Hello World!” will now be downcased on render.</p>
+
+<p>It may not seem like it now, but much of Jekyll’s power comes from combining
+Liquid with other features.</p>
+
+<p>In order to see the changes from <code class="language-plaintext highlighter-rouge">downcase</code> Liquid filter, we will need to add front matter.</p>
+
+<p>That’s next. Let’s keep going.</p>
+:ET

@@ -1,0 +1,137 @@
+I"� <p>In this final step we’ll get the site ready for production.</p>
+
+<h2 id="gemfile">Gemfile</h2>
+
+<p>It’s good practice to have a <a href="/docs/ruby-101/#gemfile">Gemfile</a> for your site.
+This ensures the version of Jekyll and other gems remains consistent across
+different environments.</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">Gemfile</code> in the root with the following:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+
+<span class="n">gem</span> <span class="s1">'jekyll'</span>
+</code></pre></div></div>
+
+<p>Then run <code class="language-plaintext highlighter-rouge">bundle install</code> in your terminal. This installs the gems and
+creates <code class="language-plaintext highlighter-rouge">Gemfile.lock</code> which locks the current gem versions for a future
+<code class="language-plaintext highlighter-rouge">bundle install</code>. If you ever want to update your gem versions you can run
+<code class="language-plaintext highlighter-rouge">bundle update</code>.</p>
+
+<p>When using a <code class="language-plaintext highlighter-rouge">Gemfile</code>, you’ll run commands like <code class="language-plaintext highlighter-rouge">jekyll serve</code> with
+<code class="language-plaintext highlighter-rouge">bundle exec</code> prefixed. So the full command is:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p>This restricts your Ruby environment to only use gems set in your <code class="language-plaintext highlighter-rouge">Gemfile</code>.</p>
+
+<h2 id="plugins">Plugins</h2>
+
+<p>Jekyll plugins allow you to create custom generated content specific to your
+site. There’s many <a href="/docs/plugins/">plugins</a> available or you can even
+write your own.</p>
+
+<p>There are three official plugins which are useful on almost any Jekyll site:</p>
+
+<ul>
+  <li><a href="https://github.com/jekyll/jekyll-sitemap">jekyll-sitemap</a> - Creates a sitemap
+file to help search engines index content</li>
+  <li><a href="https://github.com/jekyll/jekyll-feed">jekyll-feed</a> - Creates an RSS feed for
+your posts</li>
+  <li><a href="https://github.com/jekyll/jekyll-seo-tag">jekyll-seo-tag</a> - Adds meta tags to help
+with SEO</li>
+</ul>
+
+<p>To use these first you need to add them to your <code class="language-plaintext highlighter-rouge">Gemfile</code>. If you put them
+in a <code class="language-plaintext highlighter-rouge">jekyll_plugins</code> group they’ll automatically be required into Jekyll:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+
+<span class="n">gem</span> <span class="s1">'jekyll'</span>
+
+<span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'jekyll-sitemap'</span>
+  <span class="n">gem</span> <span class="s1">'jekyll-feed'</span>
+  <span class="n">gem</span> <span class="s1">'jekyll-seo-tag'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then add these lines to your <code class="language-plaintext highlighter-rouge">_config.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">plugins</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">jekyll-feed</span>
+  <span class="pi">-</span> <span class="s">jekyll-sitemap</span>
+  <span class="pi">-</span> <span class="s">jekyll-seo-tag</span>
+</code></pre></div></div>
+
+<p>Now install them by running a <code class="language-plaintext highlighter-rouge">bundle update</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">jekyll-sitemap</code> doesn’t need any setup, it will create your sitemap on build.</p>
+
+<p>For <code class="language-plaintext highlighter-rouge">jekyll-feed</code> and <code class="language-plaintext highlighter-rouge">jekyll-seo-tag</code> you need to add tags to
+<code class="language-plaintext highlighter-rouge">_layouts/default.html</code>:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/assets/css/styles.css"&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="nt">feed_meta</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">seo</span><span class="w"> </span><span class="p">%}</span>
+  &lt;/head&gt;
+  &lt;body&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>navigation.html<span class="w"> </span><span class="p">%}</span>
+    <span class="p">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">}}</span>
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></div>
+
+<p>Restart your Jekyll server and check these tags are added to the <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>.</p>
+
+<h2 id="environments">Environments</h2>
+
+<p>Sometimes you might want to output something in production but not
+in development. Analytics scripts are the most common example of this.</p>
+
+<p>To do this you can use <a href="/docs/configuration/environments/">environments</a>. You
+can set the environment by using the <code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> environment variable when
+running a command. For example:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+</code></pre></div></div>
+
+<p>By default <code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> is development. The <code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> is available to you
+in liquid using <code class="language-plaintext highlighter-rouge">jekyll.environment</code>. So to only output the analytics script
+on production you would do the following:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">jekyll</span><span class="p">.</span><span class="nv">environment</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"production"</span><span class="w"> </span><span class="p">%}</span>
+  &lt;script src="my-analytics-script.js"&gt;&lt;/script&gt;
+<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="deployment">Deployment</h2>
+
+<p>The final step is to get the site onto a production server. The most basic way
+to do this is to run a production build:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+</code></pre></div></div>
+
+<p>And copy the contents of <code class="language-plaintext highlighter-rouge">_site</code> to your server.</p>
+
+<p>A better way is to automate this process using a <a href="/docs/deployment/automated/">CI</a>
+or <a href="/docs/deployment/third-party/">3rd party</a>.</p>
+
+<h2 id="wrap-up">Wrap up</h2>
+
+<p>That brings us to the end of this step-by-step tutorial and the beginning of
+your Jekyll journey!</p>
+
+<ul>
+  <li>Come say hi to the <a href="https://talk.jekyllrb.com">community forums</a></li>
+  <li>Help us make Jekyll better by <a href="/docs/contributing/">contributing</a></li>
+  <li>Keep building Jekyll sites!</li>
+</ul>
+:ET

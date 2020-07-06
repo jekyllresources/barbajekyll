@@ -1,0 +1,5 @@
+I"½<p>Jekyll gives you a lot of flexibility to customize how it builds your site. These
+options can either be specified in a <code class="language-plaintext highlighter-rouge">_config.yml</code> or <code class="language-plaintext highlighter-rouge">_config.toml</code> file placed
+in your siteâ€™s root directory, or can be specified as flags for the <code class="language-plaintext highlighter-rouge">jekyll</code>
+executable in the terminal.</p>
+:ET

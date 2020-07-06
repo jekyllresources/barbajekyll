@@ -1,0 +1,5 @@
+I"è<p>If you‚Äôd like to include custom liquid tags in your site, you can do so by
+hooking into the tagging system. Built-in examples added by Jekyll include the
+<code class="language-plaintext highlighter-rouge">highlight</code> and <code class="language-plaintext highlighter-rouge">include</code> tags. Below is an example of a custom liquid tag that
+will output the time the page was rendered:</p>
+:ET

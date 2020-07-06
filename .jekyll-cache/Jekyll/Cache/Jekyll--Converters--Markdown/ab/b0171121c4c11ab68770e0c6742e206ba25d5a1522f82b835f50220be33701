@@ -1,0 +1,141 @@
+I"�3<p>Using <a href="/docs/front-matter/">front matter</a> is one way that you can specify configuration in the pages and posts for your site. Setting things like a default layout, or customizing the title, or specifying a more precise date/time for the post can all be added to your page or post front matter.</p>
+
+<p>Often times, you will find that you are repeating a lot of configuration options. Setting the same layout in each file, adding the same category - or categories - to a post, etc. You can even add custom variables like author names, which might be the same for the majority of posts on your blog.</p>
+
+<p>Instead of repeating this configuration each time you create a new post or page, Jekyll provides a way to set these defaults in the site configuration. To do this, you can specify site-wide defaults using the <code class="language-plaintext highlighter-rouge">defaults</code> key in the <code class="language-plaintext highlighter-rouge">_config.yml</code> file in your project’s root directory.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">defaults</code> key holds an array of scope/values pairs that define what defaults should be set for a particular file path, and optionally, a file type in that path.</p>
+
+<p>Let’s say that you want to add a default layout to all pages and posts in your site. You would add this to your <code class="language-plaintext highlighter-rouge">_config.yml</code> file:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># an empty string here means all files in the project</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">default"</span>
+</code></pre></div></div>
+
+<div class="note info">
+  <h5>Stop and rerun `jekyll serve` command.</h5>
+  <p>
+    The <code>_config.yml</code> master configuration file contains global configurations
+    and variable definitions that are read once at execution time. Changes made to <code>_config.yml</code>
+    during automatic regeneration are not loaded until the next execution.
+  </p>
+  <p>
+    Note <a href="/docs/datafiles">Data Files</a> are included and reloaded during automatic regeneration.
+  </p>
+</div>
+
+<p>Here, we are scoping the <code class="language-plaintext highlighter-rouge">values</code> to any file that exists in the path <code class="language-plaintext highlighter-rouge">scope</code>. Since the path is set as an empty string, it will apply to <strong>all files</strong> in your project. You probably don’t want to set a layout on every file in your project - like css files, for example - so you can also specify a <code class="language-plaintext highlighter-rouge">type</code> value under the <code class="language-plaintext highlighter-rouge">scope</code> key.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># an empty string here means all files in the project</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">posts"</span> <span class="c1"># previously `post` in Jekyll 2.2.</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">default"</span>
+</code></pre></div></div>
+
+<p>Now, this will only set the layout for files where the type is <code class="language-plaintext highlighter-rouge">posts</code>.
+The different types that are available to you are <code class="language-plaintext highlighter-rouge">pages</code>, <code class="language-plaintext highlighter-rouge">posts</code>, <code class="language-plaintext highlighter-rouge">drafts</code> or any collection in your site. While <code class="language-plaintext highlighter-rouge">type</code> is optional, you must specify a value for <code class="language-plaintext highlighter-rouge">path</code> when creating a <code class="language-plaintext highlighter-rouge">scope/values</code> pair.</p>
+
+<p>As mentioned earlier, you can set multiple scope/values pairs for <code class="language-plaintext highlighter-rouge">defaults</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pages"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">my-site"</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">projects"</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pages"</span> <span class="c1"># previously `page` in Jekyll 2.2.</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">project"</span> <span class="c1"># overrides previous default layout</span>
+      <span class="na">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Mr.</span><span class="nv"> </span><span class="s">Hyde"</span>
+</code></pre></div></div>
+
+<p>With these defaults, all pages would use the <code class="language-plaintext highlighter-rouge">my-site</code> layout. Any html files that exist in the <code class="language-plaintext highlighter-rouge">projects/</code>
+folder will use the <code class="language-plaintext highlighter-rouge">project</code> layout, if it exists. Those files will also have the <code class="language-plaintext highlighter-rouge">page.author</code>
+<a href="/docs/variables/">liquid variable</a> set to <code class="language-plaintext highlighter-rouge">Mr. Hyde</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">collections</span><span class="pi">:</span>
+  <span class="na">my_collection</span><span class="pi">:</span>
+    <span class="na">output</span><span class="pi">:</span> <span class="no">true</span>
+
+<span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">my_collection"</span> <span class="c1"># a collection in your site, in plural form</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">default"</span>
+</code></pre></div></div>
+
+<p>In this example, the <code class="language-plaintext highlighter-rouge">layout</code> is set to <code class="language-plaintext highlighter-rouge">default</code> inside the
+<a href="/docs/collections/">collection</a> with the name <code class="language-plaintext highlighter-rouge">my_collection</code>.</p>
+
+<h3 id="glob-patterns-in-front-matter-defaults">Glob patterns in Front Matter defaults</h3>
+
+<p>It is also possible to use glob patterns (currently limited to patterns that contain <code class="language-plaintext highlighter-rouge">*</code>) when matching defaults. For example, it is possible to set specific layout for each <code class="language-plaintext highlighter-rouge">special-page.html</code> in any subfolder of <code class="language-plaintext highlighter-rouge">section</code> folder.<span class="version-badge" title="This feature is available starting version 3.7.0">3.7.0</span></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">collections</span><span class="pi">:</span>
+  <span class="na">my_collection</span><span class="pi">:</span>
+    <span class="na">output</span><span class="pi">:</span> <span class="no">true</span>
+
+<span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">section/*/special-page.html"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">specific-layout"</span>
+</code></pre></div></div>
+
+<div class="note warning">
+  <h5>Globbing and Performance</h5>
+  <p>
+    Please note that globbing a path is known to have a negative effect on
+    performance and is currently not optimized, especially on Windows.
+    Globbing a path will increase your build times in proportion to the size
+    of the associated collection directory.
+  </p>
+</div>
+
+<h3 id="precedence">Precedence</h3>
+
+<p>Jekyll will apply all of the configuration settings you specify in the <code class="language-plaintext highlighter-rouge">defaults</code> section of your <code class="language-plaintext highlighter-rouge">_config.yml</code> file. You can choose to override settings from other scope/values pair by specifying a more specific path for the scope.</p>
+
+<p>You can see that in the second to last example above. First, we set the default page layout to <code class="language-plaintext highlighter-rouge">my-site</code>. Then, using a more specific path, we set the default layout for pages in the <code class="language-plaintext highlighter-rouge">projects/</code> path to <code class="language-plaintext highlighter-rouge">project</code>. This can be done with any value that you would set in the page or post front matter.</p>
+
+<p>Finally, if you set defaults in the site configuration by adding a <code class="language-plaintext highlighter-rouge">defaults</code> section to your <code class="language-plaintext highlighter-rouge">_config.yml</code> file, you can override those settings in a post or page file. All you need to do is specify the settings in the post or page front matter. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># In _config.yml</span>
+<span class="nn">...</span>
+<span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">projects"</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pages"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">project"</span>
+      <span class="na">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Mr.</span><span class="nv"> </span><span class="s">Hyde"</span>
+      <span class="na">category</span><span class="pi">:</span> <span class="s2">"</span><span class="s">project"</span>
+<span class="nn">...</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># In projects/foo_project.md</span>
+<span class="nn">---</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">John</span><span class="nv"> </span><span class="s">Smith"</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">foobar"</span>
+<span class="nn">---</span>
+<span class="s">The post text goes here...</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">projects/foo_project.md</code> would have the <code class="language-plaintext highlighter-rouge">layout</code> set to <code class="language-plaintext highlighter-rouge">foobar</code> instead
+of <code class="language-plaintext highlighter-rouge">project</code> and the <code class="language-plaintext highlighter-rouge">author</code> set to <code class="language-plaintext highlighter-rouge">John Smith</code> instead of <code class="language-plaintext highlighter-rouge">Mr. Hyde</code> when
+the site is built.</p>
+:ET

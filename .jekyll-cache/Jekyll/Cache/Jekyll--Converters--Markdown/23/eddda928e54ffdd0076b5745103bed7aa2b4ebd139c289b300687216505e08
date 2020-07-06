@@ -1,0 +1,17 @@
+I"9<p>This version fixes a bug affecting only v3.0.4 where autoregeneration was
+<em>always</em> disabled when running Jekyll locally. This feature is a huge
+reason why Jekyll (or any static site generator, for that matter) is a joy
+to use. Sorry for the regression!</p>
+
+<p>If you’re using GitHub Pages, <a href="https://github.com/github/pages-gem/pull/285">you can follow the progress of the upgrade
+on the github/pages-gem repo</a>.</p>
+
+<p>As always, our <a href="/docs/history/#v3-0-5">history doc</a> has links to the pull
+requests and issues associated with the release for your perusal.</p>
+
+<p>We’re looking forward to the upcoming release of v3.2 which <a href="https://github.com/jekyll/jekyll/blob/master/History.markdown#head">has some
+excellent goodies</a>
+we think you’ll love.</p>
+
+<p>Happy Jekylling!</p>
+:ET

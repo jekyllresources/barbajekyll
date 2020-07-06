@@ -1,0 +1,39 @@
+I";<p>Installation on other Linux distributions works similarly as on <a href="../ubuntu/">Ubuntu</a>.</p>
+
+<p>On Fedora, the dependencies can be installed as follows:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf <span class="nb">install </span>ruby ruby-devel @development-tools
+</code></pre></div></div>
+
+<p>On Debian:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ruby-full build-essential
+</code></pre></div></div>
+
+<p>On Gentoo Linux:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>emerge <span class="nt">-av</span> jekyll
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>emerge <span class="nt">--ask</span> <span class="nt">--verbose</span> jekyll
+</code></pre></div></div>
+
+<p>On ArchLinux:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> ruby base-devel
+</code></pre></div></div>
+
+<p>On openSUSE:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>zypper <span class="nb">install</span> <span class="nt">-t</span> pattern devel_ruby devel_C_C++
+</code></pre></div></div>
+
+<p>On Clear Linux:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>swupd bundle-add ruby-basic
+</code></pre></div></div>
+
+<p>The rest works the same as on <a href="../ubuntu/">Ubuntu</a>.</p>
+:ET

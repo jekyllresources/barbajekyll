@@ -1,0 +1,63 @@
+I"�<p>You can easily serve custom 404 error pages with Jekyll to replace the default <strong>Error 404 – File Not Found</strong> page displayed when one tries to access a broken link on your site.</p>
+
+<h2 id="on-github-pages">On GitHub Pages</h2>
+
+<p>Any <code class="language-plaintext highlighter-rouge">404.html</code> at the <strong>root of your <code class="language-plaintext highlighter-rouge">_site</code> directory</strong> will be served automatically by GitHub Pages and the local WEBrick development server.</p>
+
+<p>Simply add a <code class="language-plaintext highlighter-rouge">404.md</code> or <code class="language-plaintext highlighter-rouge">404.html</code> at the root of your site’s source directory and include front matter data to use the theme’s base layout.</p>
+
+<p>If you plan to organize your files under subdirectories, the error page should have the following Front Matter Data, set: <code class="language-plaintext highlighter-rouge">permalink: /404.html</code>. This is to ensure that the compiled <code class="language-plaintext highlighter-rouge">404.html</code> resides at the root of your processed site, where it’ll be picked by the server.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="c1"># example 404.md</span>
+
+<span class="na">layout</span><span class="pi">:</span> <span class="s">default</span>
+<span class="na">permalink</span><span class="pi">:</span> <span class="s">/404.html</span>
+<span class="nn">---</span>
+
+<span class="gh"># 404</span>
+
+Page not found! :(
+</code></pre></div></div>
+
+<h2 id="hosting-on-apache-web-servers">Hosting on Apache Web Servers</h2>
+
+<p>Apache Web Servers load a configuration file named <a href="http://www.htaccess-guide.com/"><code class="language-plaintext highlighter-rouge">.htaccess</code></a> that modifies the functionality of these servers.</p>
+
+<p>Simply add the following to your <code class="language-plaintext highlighter-rouge">.htaccess</code> file.</p>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ErrorDocument</span> 404 /404.html
+</code></pre></div></div>
+
+<p>With an <code class="language-plaintext highlighter-rouge">.htaccess</code> file, you have the freedom to place your error page within a subdirectory.</p>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ErrorDocument</span> 404 /error_pages/404.html
+</code></pre></div></div>
+
+<p>Where the path is relative to your site’s domain.</p>
+
+<p>More info on configuring Apache Error Pages can found in <a href="https://httpd.apache.org/docs/current/mod/core.html#errordocument">official documentation</a>.</p>
+
+<h2 id="hosting-on-nginx-server">Hosting on Nginx server</h2>
+
+<p>The procedure is just as simple as configuring Apache servers, but slightly different.</p>
+
+<p>The nginx configuration file depends on the system in which it is installed. In most systems, it is the <code class="language-plaintext highlighter-rouge">nginx.conf</code> file, which is usually located inside <code class="language-plaintext highlighter-rouge">/etc/nginx/</code> or <code class="language-plaintext highlighter-rouge">/etc/nginx/conf/</code>. However, in other systems like Ubuntu, you would have to look for a <code class="language-plaintext highlighter-rouge">default</code> nginx configuration file, containing server related information, which is usually located inside <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-available/</code> or <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-enabled/</code>. Add the following to your nginx configuration file, <em>i.e.</em> either to <code class="language-plaintext highlighter-rouge">nginx.conf</code> file or to <code class="language-plaintext highlighter-rouge">default</code> file:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+  <span class="kn">error_page</span> <span class="mi">404</span> <span class="n">/404.html</span><span class="p">;</span>
+  <span class="kn">location</span> <span class="p">=</span> <span class="n">/404.html</span> <span class="p">{</span>
+    <span class="kn">internal</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If the <code class="language-plaintext highlighter-rouge">server</code> block already exists, only add the code inside the <code class="language-plaintext highlighter-rouge">server</code> block given above.
+The <code class="language-plaintext highlighter-rouge">location</code> directive prevents users from directly browsing the 404.html page.</p>
+
+<p>More info on nginx error page can be found on <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#error_page">nginx official documentation</a>.</p>
+
+<p class="note warning">
+  Proceed with caution while editing the configuration file.
+</p>
+:ET

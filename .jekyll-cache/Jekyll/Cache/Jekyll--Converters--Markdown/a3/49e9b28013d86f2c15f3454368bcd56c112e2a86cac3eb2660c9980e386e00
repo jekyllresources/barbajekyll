@@ -1,0 +1,118 @@
+I"�<h2 id="install-command-line-tools">Install Command Line Tools</h2>
+<p>First, you need to install the command-line tools to be able to compile native extensions, open a terminal and run:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select <span class="nt">--install</span>
+</code></pre></div></div>
+
+<h2 id="install-ruby">Install Ruby</h2>
+
+<p>Jekyll requires <strong>Ruby &gt; 2.5.0</strong>.
+macOS Catalina 10.15 comes with ruby 2.6.3, so you’re fine.
+If you’re running a previous macOS system, you’ll have to install a newer version of Ruby.</p>
+
+<h3 id="brew">With Homebrew</h3>
+<p>To run the latest Ruby version you need to install it through <a href="https://brew.sh">Homebrew</a>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install Homebrew</span>
+/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="si">)</span><span class="s2">"</span>
+
+brew <span class="nb">install </span>ruby
+</code></pre></div></div>
+
+<p>Add the brew ruby path to your shell config:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+</code></pre></div></div>
+
+<p>Then relaunch your terminal and check your updated Ruby setup:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>which ruby
+<span class="c"># /usr/local/opt/ruby/bin/ruby</span>
+
+ruby <span class="nt">-v</span>
+ruby 2.7.1p83 <span class="o">(</span>2020-03-31 revision a0c7c23c9c<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Yay, we are now running current stable Ruby!</p>
+
+<h3 id="rbenv">With rbenv</h3>
+
+<p>People often use <a href="https://github.com/rbenv/rbenv">rbenv</a> to manage multiple
+Ruby versions. This is very useful when you need to be able to run a given Ruby version on a project.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install Homebrew</span>
+/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="si">)</span><span class="s2">"</span>
+
+<span class="c"># Install rbenv and ruby-build</span>
+brew <span class="nb">install </span>rbenv
+
+<span class="c"># Set up rbenv integration with your shell</span>
+rbenv init
+
+<span class="c"># Check your installation</span>
+curl <span class="nt">-fsSL</span> https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+</code></pre></div></div>
+
+<p>Restart your terminal for changes to take effect.
+Now you can install the Ruby version of our choice, let’s go with current latest stable Ruby:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install </span>2.7.1
+rbenv global 2.7.1
+ruby <span class="nt">-v</span>
+ruby 2.7.1p83 <span class="o">(</span>2020-03-31 revision a0c7c23c9c<span class="o">)</span>
+</code></pre></div></div>
+
+<p>That’s it! Head over <a href="https://github.com/rbenv/rbenv#command-reference">rbenv command references</a> to learn how to use different versions of Ruby in your projects.</p>
+
+<h2 id="install-jekyll">Install Jekyll</h2>
+
+<p>Now all that is left is installing <a href="/docs/ruby-101/#bundler">Bundler</a> and Jekyll.</p>
+
+<h3 id="local-install">Local Install</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install</span> <span class="nt">--user-install</span> bundler jekyll
+</code></pre></div></div>
+
+<p>and then get your Ruby version using</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby <span class="nt">-v</span>
+ruby 2.7.1p83 <span class="o">(</span>2020-03-31 revision a0c7c23c9c<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Then append your path file with the following, replacing the <code class="language-plaintext highlighter-rouge">X.X</code> with the first two digits of your Ruby version.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH="$HOME/.gem/ruby/X.X.0/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+</code></pre></div></div>
+
+<p>To check that your gem paths point to your home directory run:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">env</span>
+</code></pre></div></div>
+
+<p>And check that <code class="language-plaintext highlighter-rouge">GEM PATHS:</code> points to a path in your home directory.</p>
+
+<p class="note info">Every time you update Ruby to a version with a different first two digits, you will need to update your path to match.</p>
+
+<h3 id="global-install">Global Install</h3>
+
+<p class="note warning">We strongly recommend against installing Ruby gems globally to avoid file permissions problems and using <code class="language-plaintext highlighter-rouge">sudo</code>.</p>
+
+<h4 id="on-mojave-1014">On Mojave (10.14)</h4>
+
+<p>Because of SIP Protections in Mojave, you must run:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>gem <span class="nb">install </span>bundler
+<span class="nb">sudo </span>gem <span class="nb">install</span> <span class="nt">-n</span> /usr/local/bin/ jekyll
+</code></pre></div></div>
+
+<h4 id="before-mojave-1014">Before Mojave (&lt;10.14)</h4>
+
+<p>You only have to run:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>gem <span class="nb">install </span>bundler jekyll
+</code></pre></div></div>
+
+<h2 id="problems">Problems?</h2>
+
+<p>Check out the <a href="/docs/troubleshooting/">troubleshooting</a> page or <a href="https://talk.jekyllrb.com">ask for help on our forum</a>.</p>
+:ET

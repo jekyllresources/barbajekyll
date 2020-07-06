@@ -1,0 +1,65 @@
+I"à<p>There are a number of ways to easily automate the deployment of a Jekyll site.</p>
+
+<h2 id="continuous-integration-service">Continuous Integration Service</h2>
+
+<p>One of the easiest ways to set up an automated deployment flow is by using a
+CI.</p>
+
+<p>These services run a script when thereâ€™s a commit on your Git repository.
+You might want this script to build the site, run tests over the output then deploy it to the
+service of your choice.</p>
+
+<p>We have guides for the following providers:</p>
+
+<ul>
+  <li><a href="/docs/continuous-integration/github-actions/">GitHub Actions</a></li>
+  <li><a href="/docs/continuous-integration/travis-ci/">Travis CI</a></li>
+  <li><a href="/docs/continuous-integration/circleci/">CircleCI</a></li>
+  <li><a href="/docs/continuous-integration/buddyworks/">Buddy</a></li>
+</ul>
+
+<h2 id="git-post-receive-hook">Git post-receive hook</h2>
+
+<p>To have a remote server handle the deploy for you every time you push changes using Git, you can create a user account which has all the public keys that are authorized to deploy in its <code class="language-plaintext highlighter-rouge">authorized_keys</code> file. With that in place, setting up the post-receive hook is done as follows:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>laptop<span class="nv">$ </span>ssh deployer@example.com
+server<span class="nv">$ </span><span class="nb">mkdir </span>myrepo.git
+server<span class="nv">$ </span><span class="nb">cd </span>myrepo.git
+server<span class="nv">$ </span>git <span class="nt">--bare</span> init
+server<span class="nv">$ </span><span class="nb">cp </span>hooks/post-receive.sample hooks/post-receive
+server<span class="nv">$ </span><span class="nb">mkdir</span> /var/www/myrepo
+</code></pre></div></div>
+
+<p>Next, add the following lines to hooks/post-receive and be sure Jekyll is
+installed on the server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash -l</span>
+
+<span class="c"># Install Ruby Gems to ~/gems</span>
+<span class="nb">export </span><span class="nv">GEM_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/gems
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$GEM_HOME</span>/bin:<span class="nv">$PATH</span>
+
+<span class="nv">GIT_REPO</span><span class="o">=</span><span class="nv">$HOME</span>/myrepo.git
+<span class="nv">TMP_GIT_CLONE</span><span class="o">=</span><span class="nv">$HOME</span>/tmp/myrepo
+<span class="nv">GEMFILE</span><span class="o">=</span><span class="nv">$TMP_GIT_CLONE</span>/Gemfile
+<span class="nv">PUBLIC_WWW</span><span class="o">=</span>/var/www/myrepo
+
+git clone <span class="nv">$GIT_REPO</span> <span class="nv">$TMP_GIT_CLONE</span>
+<span class="nv">BUNDLE_GEMFILE</span><span class="o">=</span><span class="nv">$GEMFILE</span> bundle <span class="nb">install
+</span><span class="nv">BUNDLE_GEMFILE</span><span class="o">=</span><span class="nv">$GEMFILE</span> bundle <span class="nb">exec </span>jekyll build <span class="nt">-s</span> <span class="nv">$TMP_GIT_CLONE</span> <span class="nt">-d</span> <span class="nv">$PUBLIC_WWW</span>
+<span class="nb">rm</span> <span class="nt">-Rf</span> <span class="nv">$TMP_GIT_CLONE</span>
+<span class="nb">exit</span>
+</code></pre></div></div>
+
+<p>Finally, run the following command on any users laptop that needs to be able to
+deploy using this hook:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>laptops<span class="nv">$ </span>git remote add deploy deployer@example.com:~/myrepo.git
+</code></pre></div></div>
+
+<p>Deploying is now as easy as telling nginx or Apache to look at
+<code class="language-plaintext highlighter-rouge">/var/www/myrepo</code> and running the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>laptops<span class="nv">$ </span>git push deploy master
+</code></pre></div></div>
+:ET

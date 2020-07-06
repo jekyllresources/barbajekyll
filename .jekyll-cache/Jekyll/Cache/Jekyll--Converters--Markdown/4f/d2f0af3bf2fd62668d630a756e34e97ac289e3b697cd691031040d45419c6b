@@ -1,0 +1,133 @@
+I"s!<p>You might be wondering how you can have a blog without a database. In true
+Jekyll style, blogging is powered by text files only.</p>
+
+<h2 id="posts">Posts</h2>
+
+<p>Blog posts live in a folder called <code class="language-plaintext highlighter-rouge">_posts</code>. The filename for posts have a
+special format: the publish date, then a title, followed by an extension.</p>
+
+<p>Create your first post at <code class="language-plaintext highlighter-rouge">_posts/2018-08-20-bananas.md</code> with the
+following content:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">jill</span>
+<span class="nn">---</span>
+A banana is an edible fruit – botanically a berry – produced by several kinds
+of large herbaceous flowering plants in the genus Musa.
+
+In some countries, bananas used for cooking may be called "plantains",
+distinguishing them from dessert bananas. The fruit is variable in size, color,
+and firmness, but is usually elongated and curved, with soft flesh rich in
+starch covered with a rind, which may be green, yellow, red, purple, or brown
+when ripe.
+</code></pre></div></div>
+
+<p>This is like the <code class="language-plaintext highlighter-rouge">about.md</code> you created before except it has an author and
+a different layout. <code class="language-plaintext highlighter-rouge">author</code> is a custom variable, it’s not required and could
+have been named something like <code class="language-plaintext highlighter-rouge">creator</code>.</p>
+
+<h2 id="layout">Layout</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">post</code> layout doesn’t exist so you’ll need to create it at
+<code class="language-plaintext highlighter-rouge">_layouts/post.html</code> with the following content:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+---
+&lt;h1&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/h1&gt;
+&lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date_to_string</span><span class="w"> </span><span class="p">}}</span> - <span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">author</span><span class="w"> </span><span class="p">}}</span>&lt;/p&gt;
+
+<span class="p">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>This is an example of layout inheritance. The post layout outputs the title,
+date, author and content body which is wrapped by the default layout.</p>
+
+<p>Also note the <code class="language-plaintext highlighter-rouge">date_to_string</code> filter, this formats a date into a nicer format.</p>
+
+<h2 id="list-posts">List posts</h2>
+
+<p>There’s currently no way to navigate to the blog post. Typically a blog has a
+page which lists all the posts, let’s do that next.</p>
+
+<p>Jekyll makes posts available at <code class="language-plaintext highlighter-rouge">site.posts</code>.</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">blog.html</code> in your root (<code class="language-plaintext highlighter-rouge">/blog.html</code>) with the following content:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+title: Blog
+---
+&lt;h1&gt;Latest Posts&lt;/h1&gt;
+
+&lt;ul&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}</span>
+    &lt;li&gt;
+      &lt;h2&gt;&lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;&lt;/h2&gt;
+      <span class="p">{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">excerpt</span><span class="w"> </span><span class="p">}}</span>
+    &lt;/li&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/ul&gt;
+</code></pre></div></div>
+
+<p>There’s a few things to note with this code:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">post.url</code> is automatically set by Jekyll to the output path of the post</li>
+  <li><code class="language-plaintext highlighter-rouge">post.title</code> is pulled from the post filename and can be overridden by
+setting <code class="language-plaintext highlighter-rouge">title</code> in front matter</li>
+  <li><code class="language-plaintext highlighter-rouge">post.excerpt</code> is the first paragraph of content by default</li>
+</ul>
+
+<p>You also need a way to navigate to this page through the main navigation. Open
+<code class="language-plaintext highlighter-rouge">_data/navigation.yml</code> and add an entry for the blog page:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Home</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">About</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/about.html</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Blog</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/blog.html</span>
+</code></pre></div></div>
+
+<h2 id="more-posts">More posts</h2>
+
+<p>A blog isn’t very exciting with a single post. Add a few more:</p>
+
+<p><code class="language-plaintext highlighter-rouge">_posts/2018-08-21-apples.md</code>:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">jill</span>
+<span class="nn">---</span>
+An apple is a sweet, edible fruit produced by an apple tree.
+
+Apple trees are cultivated worldwide, and are the most widely grown species in
+the genus Malus. The tree originated in Central Asia, where its wild ancestor,
+Malus sieversii, is still found today. Apples have been grown for thousands of
+years in Asia and Europe, and were brought to North America by European
+colonists.
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">_posts/2018-08-22-kiwifruit.md</code>:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">ted</span>
+<span class="nn">---</span>
+Kiwifruit (often abbreviated as kiwi), or Chinese gooseberry is the edible
+berry of several species of woody vines in the genus Actinidia.
+
+The most common cultivar group of kiwifruit is oval, about the size of a large
+hen's egg (5–8 cm (2.0–3.1 in) in length and 4.5–5.5 cm (1.8–2.2 in) in
+diameter). It has a fibrous, dull greenish-brown skin and bright green or
+golden flesh with rows of tiny, black, edible seeds. The fruit has a soft
+texture, with a sweet and unique flavor.
+</code></pre></div></div>
+
+<p>Open <a href="http://localhost:4000" target="_blank" data-proofer-ignore="">http://localhost:4000</a>
+and have a look through your blog posts.</p>
+
+<p>Next we’ll focus on creating a page for each post author.</p>
+:ET

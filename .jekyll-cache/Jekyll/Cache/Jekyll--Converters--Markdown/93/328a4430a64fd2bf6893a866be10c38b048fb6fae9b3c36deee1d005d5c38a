@@ -1,0 +1,127 @@
+I"�*<p>All of the standard Liquid
+<a href="https://shopify.github.io/liquid/tags/control-flow/">tags</a> are supported.
+Jekyll has a few built in tags to help you build your site. You can also create
+your own tags using <a href="/docs/plugins/">plugins</a>.</p>
+
+<h2 id="includes">Includes</h2>
+
+<p>If you have page snippets that you use repeatedly across your site, an
+<a href="/docs/includes/">include</a> is the perfect way to make this more maintainable.</p>
+
+<h2 id="code-snippet-highlighting">Code snippet highlighting</h2>
+
+<p>Jekyll has built in support for syntax highlighting of over 100 languages
+thanks to <a href="http://rouge.jneen.net">Rouge</a>. Rouge is the default highlighter
+in Jekyll 3 and above.</p>
+
+<p class="note warning">Using Pygments has been deprecated and is not supported in
+Jekyll 4; the configuration setting <code>highlighter: pygments</code>
+now automatically falls back to using <em>Rouge</em> which is written in Ruby
+and 100% compatible with stylesheets for Pygments.</p>
+
+<p>To render a code block with syntax highlighting, surround your code as follows:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">highlight</span><span class="w"> </span>ruby<span class="w"> </span><span class="p">%}</span>
+def foo
+  puts 'foo'
+end
+<span class="p">{%</span><span class="w"> </span><span class="nt">endhighlight</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>The argument to the <code class="language-plaintext highlighter-rouge">highlight</code> tag (<code class="language-plaintext highlighter-rouge">ruby</code> in the example above) is the
+language identifier. To find the appropriate identifier to use for the language
+you want to highlight, look for the “short name” on the <a href="https://github.com/jayferd/rouge/wiki/List-of-supported-languages-and-lexers">Rouge
+wiki</a>.</p>
+
+<div class="note">
+  <h5>Jekyll processes all Liquid filters in code blocks</h5>
+  <p>If you are using a language that contains curly braces, you
+    will likely need to place <code>{&#37; raw &#37;}</code> and
+    <code>{&#37; endraw &#37;}</code> tags around your code.
+    Since Jekyll <span class="version-badge" title="This feature is available starting version 4.0">4.0</span>
+, you can add <code>render_with_liquid: false</code> in your front matter to disable Liquid entirely for a particular document.</p>
+</div>
+
+<h3 id="line-numbers">Line numbers</h3>
+
+<p>There is a second argument to <code class="language-plaintext highlighter-rouge">highlight</code> called <code class="language-plaintext highlighter-rouge">linenos</code> that is optional.
+Including the <code class="language-plaintext highlighter-rouge">linenos</code> argument will force the highlighted code to include line
+numbers. For instance, the following code block would include line numbers next
+to each line:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">highlight</span><span class="w"> </span>ruby<span class="w"> </span>linenos<span class="w"> </span><span class="p">%}</span>
+def foo
+  puts 'foo'
+end
+<span class="p">{%</span><span class="w"> </span><span class="nt">endhighlight</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h3 id="stylesheets-for-syntax-highlighting">Stylesheets for syntax highlighting</h3>
+
+<p>In order for the highlighting to show up, you’ll need to include a highlighting
+stylesheet. For Pygments or Rouge you can use a stylesheet for Pygments, you
+can find an example gallery
+<a href="https://jwarby.github.io/jekyll-pygments-themes/languages/ruby.html">here</a>
+or from <a href="https://github.com/jwarby/jekyll-pygments-themes">its repository</a>.</p>
+
+<p>Copy the CSS file (<code class="language-plaintext highlighter-rouge">native.css</code> for example) into your css directory and import
+the syntax highlighter styles into your <code class="language-plaintext highlighter-rouge">main.css</code>:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="s1">"native.css"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="links">Links</h2>
+
+<p class="note">Since Jekyll <span class="version-badge" title="This feature is available starting version 4.0">4.0</span>
+, you don’t need to prepend <code class="language-plaintext highlighter-rouge">link</code> and <code class="language-plaintext highlighter-rouge">post_url</code> tags with <code class="language-plaintext highlighter-rouge">site.baseurl</code>.</p>
+
+<h3 id="link">Linking to pages</h3>
+
+<p>To link to a post, a page, collection item, or file, the <code class="language-plaintext highlighter-rouge">link</code> tag will generate the correct permalink URL for the path you specify. For example, if you use the <code class="language-plaintext highlighter-rouge">link</code> tag to link to <code class="language-plaintext highlighter-rouge">mypage.html</code>, even if you change your permalink style to include the file extension or omit it, the URL formed by the <code class="language-plaintext highlighter-rouge">link</code> tag will always be valid.</p>
+
+<p>You must include the file’s original extension when using the <code class="language-plaintext highlighter-rouge">link</code> tag. Here are some examples:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>_collection/name-of-document.md<span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>_posts/2016-07-26-name-of-post.md<span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>news/index.html<span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>/assets/files/doc.pdf<span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>You can also use the <code class="language-plaintext highlighter-rouge">link</code> tag to create a link in Markdown as follows:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Link to a document](<span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>_collection/name-of-document.md<span class="w"> </span><span class="p">%}</span>)
+[Link to a post](<span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>_posts/2016-07-26-name-of-post.md<span class="w"> </span><span class="p">%}</span>)
+[Link to a page](<span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>news/index.html<span class="w"> </span><span class="p">%}</span>)
+[Link to a file](<span class="p">{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>/assets/files/doc.pdf<span class="w"> </span><span class="p">%}</span>)
+</code></pre></div></div>
+
+<p>The path to the post, page, or collection is defined as the path relative to the root directory (where your config file is) to the file, not the path from your existing page to the other page.</p>
+
+<p>For example, suppose you’re creating a link in <code class="language-plaintext highlighter-rouge">page_a.md</code> (stored in <code class="language-plaintext highlighter-rouge">pages/folder1/folder2</code>) to <code class="language-plaintext highlighter-rouge">page_b.md</code> (stored in  <code class="language-plaintext highlighter-rouge">pages/folder1</code>). Your path in the link would not be <code class="language-plaintext highlighter-rouge">../page_b.html</code>. Instead, it would be <code class="language-plaintext highlighter-rouge">/pages/folder1/page_b.md</code>.</p>
+
+<p>If you’re unsure of the path, add <code class="language-plaintext highlighter-rouge">{{ page.path }}</code> to the page and it will display the path.</p>
+
+<p>One major benefit of using the <code class="language-plaintext highlighter-rouge">link</code> or <code class="language-plaintext highlighter-rouge">post_url</code> tag is link validation. If the link doesn’t exist, Jekyll won’t build your site. This is a good thing, as it will alert you to a broken link so you can fix it (rather than allowing you to build and deploy a site with broken links).</p>
+
+<p>Note you cannot add filters to <code class="language-plaintext highlighter-rouge">link</code> tags. For example, you cannot append a string using Liquid filters, such as <code class="language-plaintext highlighter-rouge">{% link mypage.html | append: "#section1" %}</code>. To link to sections on a page, you will need to use regular HTML or Markdown linking techniques.</p>
+
+<h3 id="linking-to-posts">Linking to posts</h3>
+
+<p>If you want to include a link to a post on your site, the <code class="language-plaintext highlighter-rouge">post_url</code> tag will generate the correct permalink URL for the post you specify.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">post_url</span><span class="w"> </span><span class="mi">2010</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span>name-of-post<span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>If you organize your posts in subdirectories, you need to include subdirectory path to the post:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">post_url</span><span class="w"> </span>/subdir/2010-07-21-name-of-post<span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>There is no need to include the file extension when using the <code class="language-plaintext highlighter-rouge">post_url</code> tag.</p>
+
+<p>You can also use this tag to create a link to a post in Markdown as follows:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Name of Link](<span class="p">{%</span><span class="w"> </span><span class="nt">post_url</span><span class="w"> </span><span class="mi">2010</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span>name-of-post<span class="w"> </span><span class="p">%}</span>)
+</code></pre></div></div>
+
+:ET

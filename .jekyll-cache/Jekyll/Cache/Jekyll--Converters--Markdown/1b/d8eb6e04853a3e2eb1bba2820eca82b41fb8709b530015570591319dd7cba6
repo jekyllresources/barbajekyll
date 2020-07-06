@@ -1,0 +1,16 @@
+I"÷<p>Jekyll uses the <a href="https://shopify.github.io/liquid/">Liquid</a> templating language
+to process templates.</p>
+
+<p>Generally in Liquid you output content using two curly braces e.g.
+<code class="language-plaintext highlighter-rouge">{{ variable }}</code> and perform logic statements by
+surrounding them in a curly brace percentage sign e.g.
+<code class="language-plaintext highlighter-rouge">{% if statement %}</code>. To learn more about Liquid, check
+out the <a href="https://shopify.github.io/liquid/">official Liquid Documentation</a>.</p>
+
+<p>Jekyll provides a number of useful Liquid additions to help you build your site:</p>
+
+<ul>
+  <li><a href="/docs/liquid/filters/">Filters</a></li>
+  <li><a href="/docs/liquid/tags/">Tags</a></li>
+</ul>
+:ET

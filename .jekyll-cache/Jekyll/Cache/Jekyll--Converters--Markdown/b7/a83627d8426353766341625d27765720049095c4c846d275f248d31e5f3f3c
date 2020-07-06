@@ -1,0 +1,86 @@
+I"<p>If you have a new markup language you’d like to use with your site, you can
+include it by implementing your own converter. Both the Markdown and
+<a href="https://github.com/jekyll/jekyll-textile-converter">Textile</a> markup
+languages are implemented using this method.</p>
+
+<div class="note info">
+  <h5>Remember your Front Matter</h5>
+  <p>
+    Jekyll will only convert files that have a YAML header at the top, even for
+    converters you add using a plugin.
+  </p>
+</div>
+
+<p>Below is a converter that will take all posts ending in <code class="language-plaintext highlighter-rouge">.upcase</code> and process
+them using the <code class="language-plaintext highlighter-rouge">UpcaseConverter</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="k">class</span> <span class="nc">UpcaseConverter</span> <span class="o">&lt;</span> <span class="no">Converter</span>
+    <span class="n">safe</span> <span class="kp">true</span>
+    <span class="n">priority</span> <span class="ss">:low</span>
+
+    <span class="k">def</span> <span class="nf">matches</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+      <span class="n">ext</span> <span class="o">=~</span> <span class="sr">/^\.upcase$/i</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">output_ext</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+      <span class="s2">".html"</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+      <span class="n">content</span><span class="p">.</span><span class="nf">upcase</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Converters should implement at a minimum 3 methods:</p>
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code>matches</code></p>
+      </td>
+      <td><p>
+        Does the given extension match this converter’s list of acceptable
+        extensions? Takes one argument: the file’s extension (including the
+        dot). Must return <code>true</code> if it matches, <code>false</code>
+        otherwise.
+      </p></td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>output_ext</code></p>
+      </td>
+      <td><p>
+        The extension to be given to the output file (including the dot).
+        Usually this will be <code>".html"</code>.
+      </p></td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>convert</code></p>
+      </td>
+      <td><p>
+        Logic to do the content conversion. Takes one argument: the raw content
+        of the file (without front matter). Must return a String.
+      </p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>In our example, <code class="language-plaintext highlighter-rouge">UpcaseConverter#matches</code> checks if our filename extension is
+<code class="language-plaintext highlighter-rouge">.upcase</code>, and will render using the converter if it is. It will call
+<code class="language-plaintext highlighter-rouge">UpcaseConverter#convert</code> to process the content. In our simple converter we’re
+simply uppercasing the entire content string. Finally, when it saves the page,
+it will do so with a <code class="language-plaintext highlighter-rouge">.html</code> extension.</p>
+:ET

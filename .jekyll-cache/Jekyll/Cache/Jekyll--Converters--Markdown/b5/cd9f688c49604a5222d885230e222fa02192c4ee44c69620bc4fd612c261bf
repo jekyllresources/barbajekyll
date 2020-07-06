@@ -1,0 +1,41 @@
+I"�<p>In the <code class="language-plaintext highlighter-rouge">build</code> (or <code class="language-plaintext highlighter-rouge">serve</code>) arguments, you can specify a Jekyll environment
+and value. The build will then apply this value in any conditional statements
+in your content.</p>
+
+<p>For example, suppose you set this conditional statement in your code:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">jekyll</span><span class="p">.</span><span class="nv">environment</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"production"</span><span class="w"> </span><span class="p">%}</span>
+   <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>disqus.html<span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>When you build your Jekyll site, the content inside the <code class="language-plaintext highlighter-rouge">if</code> statement won’t be
+run unless you also specify a <code class="language-plaintext highlighter-rouge">production</code> environment in the build command,
+like this:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">JEKYLL_ENV</span><span class="o">=</span>production jekyll build
+</code></pre></div></div>
+
+<p>Specifying an environment value allows you to make certain content available
+only within specific environments.</p>
+
+<p>The default value for <code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> is <code class="language-plaintext highlighter-rouge">development</code>. Therefore if you omit
+<code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> from the build arguments, the default value will be
+<code class="language-plaintext highlighter-rouge">JEKYLL_ENV=development</code>. Any content inside
+<code class="language-plaintext highlighter-rouge">{% if jekyll.environment == "development" %}</code> tags will
+automatically appear in the build.</p>
+
+<p>Your environment values can be anything you want (not just <code class="language-plaintext highlighter-rouge">development</code> or
+<code class="language-plaintext highlighter-rouge">production</code>). Some elements you might want to hide in development
+environments include Disqus comment forms or Google Analytics. Conversely,
+you might want to expose an “Edit me in GitHub” button in a development
+environment but not include it in production environments.</p>
+
+<p>By specifying the option in the build command, you avoid having to change
+values in your configuration files when moving from one environment to another.</p>
+
+<p class="note">To switch part of your config settings depending on the environment, use the
+<a href="/docs/configuration/options/#build-command-options">build command option</a>,
+for example <code>--config _config.yml,_config_development.yml</code>. Settings
+in later files override settings in earlier files.</p>
+:ET

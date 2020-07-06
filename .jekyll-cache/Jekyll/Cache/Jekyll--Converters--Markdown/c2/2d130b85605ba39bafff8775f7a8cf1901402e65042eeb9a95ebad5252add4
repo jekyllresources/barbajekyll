@@ -1,0 +1,4 @@
+I"P<p>Quick turnover, anyone? A <a href="https://github.com/jekyll/jekyll/pull/1525">recent incompatibility with Liquid
+v2.5.2</a> produced a nasty bug in
+which <code class="language-plaintext highlighter-rouge">include</code> tags were not rendered properly within <code class="language-plaintext highlighter-rouge">if</code> blocks.</p>
+:ET

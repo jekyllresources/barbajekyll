@@ -1,0 +1,89 @@
+I"0<p>A static file is a file that does not contain any front matter. These
+include images, PDFs, and other un-rendered content.</p>
+
+<p>They’re accessible in Liquid via <code class="language-plaintext highlighter-rouge">site.static_files</code> and contain the
+following metadata:</p>
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>file.path</code></p></td>
+      <td><p>
+
+        The relative path to the file, e.g. <code>/assets/img/image.jpg</code>
+
+      </p></td>
+    </tr>
+    <tr>
+      <td><p><code>file.modified_time</code></p></td>
+      <td><p>
+
+        The `Time` the file was last modified, e.g. <code>2016-04-01 16:35:26 +0200</code>
+
+      </p></td>
+    </tr>
+    <tr>
+      <td><p><code>file.name</code></p></td>
+      <td><p>
+
+        The string name of the file e.g. <code>image.jpg</code> for <code>image.jpg</code>
+
+      </p></td>
+    </tr>
+    <tr>
+      <td><p><code>file.basename</code></p></td>
+      <td><p>
+
+        The string basename of the file e.g. <code>image</code> for <code>image.jpg</code>
+
+      </p></td>
+    </tr>
+    <tr>
+      <td><p><code>file.extname</code></p></td>
+      <td><p>
+
+        The extension name for the file, e.g.
+        <code>.jpg</code> for <code>image.jpg</code>
+
+      </p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Note that in the above table, <code class="language-plaintext highlighter-rouge">file</code> can be anything. It’s an arbitrarily set variable used in your own logic (such as in a for loop). It isn’t a global site or page variable.</p>
+
+<h2 id="add-front-matter-to-static-files">Add front matter to static files</h2>
+
+<p>Although you can’t directly add front matter values to static files, you can set front matter values through the <a href="/docs/configuration/front-matter-defaults/">defaults property</a> in your configuration file. When Jekyll builds the site, it will use the front matter values you set.</p>
+
+<p>Here’s an example:</p>
+
+<p>In your <code class="language-plaintext highlighter-rouge">_config.yml</code> file, add the following values to the <code class="language-plaintext highlighter-rouge">defaults</code> property:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">assets/img"</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>This assumes that your Jekyll site has a folder path of <code class="language-plaintext highlighter-rouge">assets/img</code> where  you have images (static files) stored. When Jekyll builds the site, it will treat each image as if it had the front matter value of <code class="language-plaintext highlighter-rouge">image: true</code>.</p>
+
+<p>Suppose you want to list all your image assets as contained in <code class="language-plaintext highlighter-rouge">assets/img</code>. You could use this for loop to look in the <code class="language-plaintext highlighter-rouge">static_files</code> object and get all static files that have this front matter property:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">image_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">static_files</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">myimage</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">image_files</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">myimage</span><span class="p">.</span><span class="nv">path</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>When you build your site, the output will list the path to each file that meets this front matter condition.</p>
+:ET

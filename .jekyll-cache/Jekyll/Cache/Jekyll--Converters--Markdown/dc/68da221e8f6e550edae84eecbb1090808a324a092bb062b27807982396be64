@@ -1,0 +1,72 @@
+I"�<p>The site is coming together; however, there’s no way to navigate between
+pages. Let’s fix that.</p>
+
+<p>Navigation should be on every page so adding it to your layout is the correct
+place to do this. Instead of adding it directly to the layout, let’s use this
+as an opportunity to learn about includes.</p>
+
+<h2 id="include-tag">Include tag</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">include</code> tag allows you to include content from another file stored
+in an <code class="language-plaintext highlighter-rouge">_includes</code> folder. Includes are useful for having a single source for
+source code that repeats around the site or for improving the readability.</p>
+
+<p>Navigation source code can get complex so sometimes it’s nice to move it into an
+include.</p>
+
+<h2 id="include-usage">Include usage</h2>
+
+<p>Create a file for the navigation at <code class="language-plaintext highlighter-rouge">_includes/navigation.html</code> with the
+following content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;nav&gt;
+  &lt;a href="/"&gt;Home&lt;/a&gt;
+  &lt;a href="/about.html"&gt;About&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre></div></div>
+
+<p>Try using the include tag to add the navigation to <code class="language-plaintext highlighter-rouge">_layouts/default.html</code>:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>navigation.html<span class="w"> </span><span class="p">%}</span>
+    <span class="p">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">}}</span>
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></div>
+
+<p>Open <a href="http://localhost:4000" target="_blank" data-proofer-ignore="">http://localhost:4000</a>
+in your browser and try switching between the pages.</p>
+
+<h2 id="current-page-highlighting">Current page highlighting</h2>
+
+<p>Let’s take this a step further and highlight the current page in the navigation.</p>
+
+<p><code class="language-plaintext highlighter-rouge">_includes/navigation.html</code> needs to know the URL of the page it’s inserted into
+so it can add styling. Jekyll has useful <a href="/docs/variables/">variables</a> available
+one of which is <code class="language-plaintext highlighter-rouge">page.url</code>.</p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">page.url</code> you can check if each link is the current page and color it red
+if true:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;nav&gt;
+  &lt;a href="/" <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/"</span><span class="w"> </span><span class="p">%}</span>style="color: red;"<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>&gt;
+    Home
+  &lt;/a&gt;
+  &lt;a href="/about.html" <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/about.html"</span><span class="w"> </span><span class="p">%}</span>style="color: red;"<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>&gt;
+    About
+  &lt;/a&gt;
+&lt;/nav&gt;
+</code></pre></div></div>
+
+<p>Take a look at <a href="http://localhost:4000" target="_blank" data-proofer-ignore="">http://localhost:4000</a>
+and see your red link for the current page.</p>
+
+<p>There’s still a lot of repetition here if you wanted to add a new item to the
+navigation or change the highlight color. In the next step we’ll address this.</p>
+:ET

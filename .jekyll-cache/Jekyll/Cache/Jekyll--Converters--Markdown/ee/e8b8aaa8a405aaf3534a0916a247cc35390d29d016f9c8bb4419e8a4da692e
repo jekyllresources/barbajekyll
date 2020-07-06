@@ -1,0 +1,16 @@
+I"<p>Well, 3.2.0 has been a success, but with one fatal flaw: it doesn’t work on
+Windows! Sorry, Windows users. Hot on the trail of 3.2.0, this release
+should squash that :bug:. Sorry about that!</p>
+
+<p>This release also fixes an issue when using <a href="/docs/themes/">gem-based themes</a>
+where the theme was rejected if it existed behind a symlink. This is a
+common setup for the various ruby version managers, and for Ruby installed
+via Homebrew. Props to @benbalter for fixing that up.</p>
+
+<p>Thanks to the contributors for this release: Adam Petrie, Ben Balter,
+Daniel Chapman, DirtyF, Gary Ewan Park, Jordon Bedwell, and Parker Moore.</p>
+
+<p>As always, you can see our full changelog on <a href="/docs/history/">the History page</a>.</p>
+
+<p>Happy Jekylling!</p>
+:ET

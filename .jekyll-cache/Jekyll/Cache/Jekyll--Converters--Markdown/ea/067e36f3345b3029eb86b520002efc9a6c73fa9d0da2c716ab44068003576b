@@ -1,0 +1,52 @@
+I"�<p class="note info"><strong>This guide is for maintainers.</strong> These special people have <strong>write access</strong> to one or more of Jekyll’s repositories and help merge the contributions of others. You may find what is written here interesting, but it’s definitely not for everyone.</p>
+
+<p>Before evaluating an issue, it is important to identify if it is a feature
+request or a bug. For the Jekyll project the following definitions are used
+to identify a feature or a bug:</p>
+
+<p><strong>Feature</strong> - A feature is defined as a request that adds functionality to
+Jekyll outside of its current capabilities.
+<strong>Bug</strong> - A bug is defined as an issue that identifies an error that a user
+(or users) encounter when using current Jekyll functionalities.</p>
+
+<h2 id="feature">Feature?</h2>
+
+<p>If the issue describes a feature request, ask:</p>
+
+<ol>
+  <li>Is this a setting? <a href="http://ben.balter.com/2016/03/08/optimizing-for-power-users-and-edge-cases/#settings-are-a-crutch">Settings are a crutch</a> for doing “the right thing”. Settings usually point to a bad default or an edge case that could be solved easily with a plugin. Keep the :christmas_tree: of settings as small as possible so as not to reduce the usability of the product. We like the philosophy “decisions not options.”</li>
+  <li>Would at least 80% of users find it useful? If even a quarter of our users won’t use it, it’s very likely that the request doesn’t fit our product’s core goal.</li>
+  <li>Is there another way to accomplish the end goal of the request? Most feature requests are due to bad documentation for or understanding of a pre-existing feature. See if you can clarify the end goal of the request. What is the user trying to do? Could they accomplish that goal through another feature we already support?</li>
+  <li>Even if 80% of our users will use it, does it fit the core goal of our project? We are writing a tool for making static websites, not a swiss army knife for publishing more generally.</li>
+</ol>
+
+<p>Feel free to get others’ opinions and ask questions of the issue author, but depending upon the answers to the questions above, it may be out of scope for our project.</p>
+
+<p>If the request is within scope, prioritize it on the product roadmap with the other maintainers. Apply the appropriate tags and ensure the right people have weighed in to define the feature’s scope and implementation. If you want to be the <em>best ever</em>, submit a PR yourself which adds the feature.</p>
+
+<h2 id="bug">Bug?</h2>
+
+<h3 id="reproducibility">Reproducibility</h3>
+
+<p>If the bug has clear reproduction steps, take a minute to try them. If it helps, write a test in our test suite for the scenario which replicates the problem. Can you reliably replicate the issue?</p>
+
+<p>If you can’t replicate the issue, post your replication steps which didn’t work and ask for clarification from the issue author.</p>
+
+<h3 id="supported-platform">Supported Platform</h3>
+
+<p>Is the author using a supported platform? We support the latest versions of macOS, Ubuntu, Debian, CentOS, Fedora, and Arch Linux.</p>
+
+<p>You may close the issue immediately if the author cannot reproduce the issue on a supported platform. For Windows-related problems, leave a comment letting the user know that Windows is not officially supported, but that they may absolutely continue using the issue to communicate with folks from <code class="language-plaintext highlighter-rouge">@jekyll/windows</code> to further investigate. Additionally, you can point them to Jekyll Talk (https://talk.jekyllrb.com) as a means of getting support from the community.</p>
+
+<p>If the user is experiencing issues with GitHub Pages or another hosted platform that we cannot reproduce, please direct them to the platform’s support channel and close the issue.</p>
+
+<h3 id="what-they-wanted-vs-what-they-got">What they wanted vs. what they got</h3>
+
+<p>An issue without a clear explanation of what the user got and what they were expecting to get is not an issue we can accurately respond to. If the user doesn’t provide this information, please ask for clarification and apply the <code class="language-plaintext highlighter-rouge">pending-feedback</code> label. This information helps us build test cases such that we do not break the behaviour again in the future. The <code class="language-plaintext highlighter-rouge">pending-feedback</code> label will be removed automatically once the issue author posts a reply.</p>
+
+<p>Is what they wanted to get something we want to happen? Sometimes a bug report is actually masquerading as a feature request. See the guidance above for handling feature requests.</p>
+
+<h3 id="staleness-and-automatic-closure">Staleness and automatic closure</h3>
+
+<p>@jekyllbot will automatically mark issues as <code class="language-plaintext highlighter-rouge">stale</code> if no activity occurs for at least one month. @jekyllbot leaves a comment asking for information about reproducibility in current versions. If no one responds after another month, the issue is automatically closed. This behavior can be suppressed by setting the <a href="/docs/maintaining/special-labels/#pinned"><code class="language-plaintext highlighter-rouge">pinned</code> label</a>.</p>
+:ET

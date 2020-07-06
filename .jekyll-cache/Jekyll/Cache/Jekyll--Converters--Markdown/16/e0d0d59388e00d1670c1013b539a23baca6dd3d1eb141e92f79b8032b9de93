@@ -1,0 +1,4 @@
+I"Ê<p>Front matter is a snippet of <a href="http://yaml.org/">YAML</a> which sits between two
+triple-dashed lines at the top of a file. Front matter is used to set variables
+for the page, for example:</p>
+:ET

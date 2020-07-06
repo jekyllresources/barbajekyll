@@ -1,0 +1,21 @@
+I"�<p>Jekyll is a <a href="/docs/ruby-101/#gems">Ruby Gem</a> that can be installed on most systems.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li><a href="https://www.ruby-lang.org/en/downloads/">Ruby</a> version <strong>2.5.0</strong> or above, including all development headers (ruby version can be checked by running <code class="language-plaintext highlighter-rouge">ruby -v</code>)</li>
+  <li><a href="https://rubygems.org/pages/download">RubyGems</a> (which you can check by running <code class="language-plaintext highlighter-rouge">gem -v</code>)</li>
+  <li><a href="https://gcc.gnu.org/install/">GCC</a> and <a href="https://www.gnu.org/software/make/">Make</a> (in case your system doesn’t have them installed, which you can check by running <code class="language-plaintext highlighter-rouge">gcc -v</code>,<code class="language-plaintext highlighter-rouge">g++ -v</code>  and <code class="language-plaintext highlighter-rouge">make -v</code> in your system’s command line interface)</li>
+</ul>
+
+<h2 id="guides">Guides</h2>
+
+<p>For detailed install instructions have a look at the guide for your operating system.</p>
+
+<ul>
+  <li><a href="/docs/installation/macos/">macOS</a></li>
+  <li><a href="/docs/installation/ubuntu/">Ubuntu Linux</a></li>
+  <li><a href="/docs/installation/other-linux/">Other Linux distros</a></li>
+  <li><a href="/docs/installation/windows/">Windows</a></li>
+</ul>
+:ET

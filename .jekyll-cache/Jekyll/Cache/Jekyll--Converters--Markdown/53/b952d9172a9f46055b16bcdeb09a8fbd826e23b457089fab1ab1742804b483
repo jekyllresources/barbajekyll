@@ -1,0 +1,40 @@
+I"�<p>Aloha Jekyllers!! :wave:</p>
+
+<p>After months of toiling on the codebase and shipping a couple of release-candidates, the Jekyll Team is delighted to finally
+present <code class="language-plaintext highlighter-rouge">v3.8.0</code>, packed with optimizations, improvements, some new features and a couple of bug-fixes. Yay!!!</p>
+
+<p>Under the hood, Jekyll has undergone many minor changes that will allow it to run more performantly in the coming years. :smiley:
+Rest assured, our users should see minor improvements in their site’s build times.</p>
+
+<p>Speaking of improvements, users running a site containing a huge amount of posts or those who like to use our <code class="language-plaintext highlighter-rouge">where</code> filter
+frequently in a single template, are going to see a massive reduction in their total build times!! :tada:</p>
+
+<p>Hold on, this version is not just about optimizations, there are some new features as well..:</p>
+<ul>
+  <li>Detect non-existent variables and filters specified in a template by enabling <code class="language-plaintext highlighter-rouge">strict_variables</code> and <code class="language-plaintext highlighter-rouge">strict_filters</code> under the
+  <code class="language-plaintext highlighter-rouge">liquid</code> key in your config file.</li>
+  <li>Allow <em>date filters</em> to output ordinal days.</li>
+  <li><code class="language-plaintext highlighter-rouge">jekyll doctor</code> now warns you if you have opted for custom <code class="language-plaintext highlighter-rouge">collections_dir</code> but placed <code class="language-plaintext highlighter-rouge">_posts</code> directory outside that
+  directory.</li>
+</ul>
+
+<p>..and yes, a couple of bug-fixes, notably:</p>
+<ul>
+  <li>Jekyll now handles future-dated documents properly.</li>
+  <li>Jekyll is able to handle Liquid blocks intelligently in excerpts.</li>
+  <li>A few methods that were <em>not meant to be publically accessible</em> have been entombed properly.</li>
+  <li>A few bugs that still plagued our <code class="language-plaintext highlighter-rouge">collections_dir</code> feature from <code class="language-plaintext highlighter-rouge">v3.7</code> got crushed.</li>
+</ul>
+
+<p>As always, the full list of changes since last release can be viewed <a href="/docs/history/#v3-8-0">here</a>.</p>
+
+<p>A big thanks to the following people who contributed to our repository with pull-requests that improved our codebase, documentation
+and tests:</p>
+
+<p>Ana María Martínez Gómez, Antonio Argote, Ashwin Maroli, Awjin Ahn, Ben Balter, Benjamin Høegh, Christian Oliff, Damien Solodow,
+David Zhang, Delson Lima, Eric Cornelissen, Florian Thomas, Frank Taillandier, Heinrich Hartmann, Jakob Vad Nielsen, John Eismeier,
+Kacper Duras, KajMagnus, Mario Cekic, Max Vilimpoc, Michael H, Mike Kasberg, Parker Moore, Pat Hawks, Paweł Kuna, Robert Riemann,
+Roger Rohrbach, Semen Zhydenko, Stefan Dellmuth, Tim Carry, olivia, and steelman.</p>
+
+<p>Happy Jekylling!! :sparkles:</p>
+:ET

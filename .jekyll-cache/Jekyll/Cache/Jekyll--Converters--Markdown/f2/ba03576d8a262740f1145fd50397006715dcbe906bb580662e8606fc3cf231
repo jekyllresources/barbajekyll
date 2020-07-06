@@ -1,0 +1,18 @@
+I"¶<p>3.5.2 is out with 6 great bug fixes, most notably one which should dramatically speed up generation of your site! In testing #6266, jekyllrb.com generation when from 18 seconds down to 8! Here is the full line-up of fixes:</p>
+
+<ul>
+  <li>Backport #6266 for v3.5.x: Memoize the return value of <code class="language-plaintext highlighter-rouge">Document#url</code> (#6301)</li>
+  <li>Backport #6247 for v3.5.x: kramdown: symbolize keys in-place (#6303)</li>
+  <li>Backport #6281 for v3.5.x: Fix <code class="language-plaintext highlighter-rouge">Drop#key?</code> so it can handle a nil argument (#6288)</li>
+  <li>Backport #6280 for v3.5.x: Guard against type error in <code class="language-plaintext highlighter-rouge">absolute_url</code> (#6287)</li>
+  <li>Backport #6273 for v3.5.x: delegate <code class="language-plaintext highlighter-rouge">StaticFile#to_json</code> to <code class="language-plaintext highlighter-rouge">StaticFile#to_liquid</code> (#6302)</li>
+  <li>Backport #6226 for v3.5.x: <code class="language-plaintext highlighter-rouge">Reader#read_directories</code>: guard against an entry not being a directory (#6304</li>
+</ul>
+
+<p>A <a href="/docs/history/#v3-5-2">full history</a> is available for your perusal. As always, please file bugs if you encounter them! Opening a pull request with a failing test for your expected behaviour is the easiest way for us to address the issue since we have a reproducible example to test again. Short of that, please fill out our issue template to the best of your ability and weâ€™ll try to get to it quickly!</p>
+
+<p>Many thanks to our contributors without whom this release could not be
+possible: Ben Balter &amp; Kyle Zhao.</p>
+
+<p>Happy Jekylling!</p>
+:ET

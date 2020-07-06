@@ -1,0 +1,6 @@
+I"Ý<p>This release fixes <a href="https://github.com/jekyll/jekyll/pull/1830">a regression</a> where Maruku fenced code blocks were turned
+off, instead of the previous default to on. Weâ€™ve added a new default
+configuration to our <code class="language-plaintext highlighter-rouge">maruku</code> config key: <code class="language-plaintext highlighter-rouge">fenced_code_blocks</code> and set it to
+default to <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+:ET

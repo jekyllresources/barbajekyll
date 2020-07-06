@@ -1,0 +1,5 @@
+I"<p>If you have a new markup language you’d like to use with your site, you can
+include it by implementing your own converter. Both the Markdown and
+<a href="https://github.com/jekyll/jekyll-textile-converter">Textile</a> markup
+languages are implemented using this method.</p>
+:ET

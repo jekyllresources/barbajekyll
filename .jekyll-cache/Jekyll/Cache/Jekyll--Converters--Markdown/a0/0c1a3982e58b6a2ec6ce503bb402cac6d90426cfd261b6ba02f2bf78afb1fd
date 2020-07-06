@@ -1,0 +1,40 @@
+I"<p>Jekyll supports loading data from YAML, JSON, and CSV files located in a <code class="language-plaintext highlighter-rouge">_data</code>
+directory. Data files are a great way to separate content from source code to
+make the site easier to maintain.</p>
+
+<p>In this step you’ll store the contents of the navigation in a data file
+and then iterate over it in the navigation include.</p>
+
+<h2 id="data-file-usage">Data file usage</h2>
+
+<p><a href="http://yaml.org/">YAML</a> is a format that’s common in the Ruby ecosystem. You’ll
+use it to store an array of navigation items each with a name and link.</p>
+
+<p>Create a data file for the navigation at <code class="language-plaintext highlighter-rouge">_data/navigation.yml</code> with the
+following:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Home</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">About</span>
+  <span class="na">link</span><span class="pi">:</span> <span class="s">/about.html</span>
+</code></pre></div></div>
+
+<p>Jekyll makes this data file available to you at <code class="language-plaintext highlighter-rouge">site.data.navigation</code>. Instead
+of outputting each link in <code class="language-plaintext highlighter-rouge">_includes/navigation.html</code>, now you can iterate over
+the data file instead:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;nav&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.data.navigation</span><span class="w"> </span><span class="p">%}</span>
+    &lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">item</span><span class="p">.</span><span class="nv">link</span><span class="w"> </span><span class="p">}}</span>" <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">item</span><span class="p">.</span><span class="nv">link</span><span class="w"> </span><span class="p">%}</span>style="color: red;"<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>&gt;
+      <span class="p">{{</span><span class="w"> </span><span class="nv">item</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
+    &lt;/a&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/nav&gt;
+</code></pre></div></div>
+
+<p>The output will be exactly the same. The difference is you’ve made it easier to
+add new navigation items and change the HTML structure.</p>
+
+<p>What good is a site without CSS, JS and images? Let’s look at how to handle
+assets in Jekyll.</p>
+:ET

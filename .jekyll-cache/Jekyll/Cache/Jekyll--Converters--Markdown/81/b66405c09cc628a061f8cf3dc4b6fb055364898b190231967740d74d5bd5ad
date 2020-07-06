@@ -1,0 +1,24 @@
+I"�<p>Before we install Jekyll, we need to make sure we have all the required
+dependencies.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ruby-full build-essential zlib1g-dev
+</code></pre></div></div>
+
+<p>It is best to avoid installing Ruby Gems as the root user. Therefore, we need to
+set up a gem installation directory for your user account. The following
+commands will add environment variables to your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> file to configure
+the gem installation path. Run them now:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'# Install Ruby Gems to ~/gems'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export GEM_HOME="$HOME/gems"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export PATH="$HOME/gems/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<p>Finally, install Jekyll:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
+</code></pre></div></div>
+
+<p>That’s it! You’re ready to start using Jekyll.</p>
+:ET

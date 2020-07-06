@@ -1,0 +1,14 @@
+I"n<p>We’ve released a few bugfixes in the form of v3.5.1 today:</p>
+
+<ul>
+  <li>Some plugins stopped functioning properly due to a NoMethodError for <code class="language-plaintext highlighter-rouge">registers</code> on NilClass. That’s been fixed.</li>
+  <li>A bug in <code class="language-plaintext highlighter-rouge">relative_url</code> when <code class="language-plaintext highlighter-rouge">baseurl</code> is <code class="language-plaintext highlighter-rouge">nil</code> caused URL’s to come out wrong. Squashed.</li>
+  <li>Static files’ liquid representations should now have all the keys you were expecting when serialized into JSON.</li>
+</ul>
+
+<p>We apologize for the breakages! We’re working diligently to improve how we test our plugins with Jekyll core to prevent breakages in the future.</p>
+
+<p>More details in <a href="/docs/history/#v3-5-1">the history</a>. Many thanks to all the contributors to Jekyll v3.5.1: Adam Voss, ashmaroli, Ben Balter, Coby Chapple, Doug Beney, Fadhil, Florian Thomas, Frank Taillandier, James, jaybe, Joshua Byrd, Kevin Plattret, &amp; Robert Jäschke.</p>
+
+<p>Happy Jekylling!</p>
+:ET

@@ -1,0 +1,37 @@
+I"x<p>Hey there! We have a quick update of Jekyll for you to enjoy this January.
+Packed full of bug fixes as usual, thanks to the tireless efforts of our
+exceptional Jekyll community. Three changes to call out:</p>
+
+<ol>
+  <li>If you’re a big fan of <a href="/docs/liquid/filters/"><code class="language-plaintext highlighter-rouge">where_by_exp</code></a>, you’ll be an
+even bigger fan of <a href="/docs/liquid/filters/"><code class="language-plaintext highlighter-rouge">group_by_exp</code></a>.</li>
+  <li>Using a custom timezone in Jekyll on Windows? Yeah, sorry that hasn’t ever worked
+properly. We made it possible to accurately <a href="/docs/installation/windows/#time-zone-management">set the timezone using IANA
+timezone codes</a>.</li>
+  <li>Documentation has been improved, notably on themes, includes and permalinks.</li>
+</ol>
+
+<p>And <a href="/docs/history/#v3-4-0">lots and lots more!</a></p>
+
+<p>This update was made possible by the dedicated efforts of our excellent
+contributors: Ajay Karwal, Alexey Rogachev, Ashwin Maroli,
+BlueberryFoxtrot, Chase, Chayoung You, Dean Attali, Dmitrii Evdokimov, Don
+Denton, Eldritch Cheese, Fabrice Laporte, Florian Thomas, Frank
+Taillandier, Hugo, Ivan Dmitrievsky, Joel Meyer-Hamme, Josh Habdas, Kenton
+Hansen, Kevin Wojniak, Kurt Anderson, Longwelwind, Max Chadwick, Nicolas
+Hoizey, Nursen, Parker Moore, Pat Hawks, Purplecarrot, Ricardo N Feliciano,
+Rob Crocombe, Roger Ogden, Skylar Challand, Thiago Arrais, Tim Banks, Tom
+Johnson, Tunghsiao Liu, XhmikosR, Zlatan Vasović, alexmalik, brainscript,
+kimbaudi, muratayusuke, penny, and yoostk.</p>
+
+<p>As always, if you encounter bugs, please do <a href="https://github.com/jekyllresources/barbajekyll/issues">search the issues</a>
+and <a href="https://github.com/jekyllresources/barbajekyll/issues/new">file an issue</a> if you aren’t able to
+find a resolution. We also have <a href="https://talk.jekyllrb.com">our Jekyll Talk
+forum</a> for those of you with general questions
+about how to accomplish certain tasks with Jekyll.</p>
+
+<p>We have some exciting updates in store for v3.5, and we’re hard at work on
+those already.</p>
+
+<p>Happy Jekylling!</p>
+:ET

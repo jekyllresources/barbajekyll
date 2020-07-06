@@ -1,0 +1,18 @@
+I"�<p>Jekyll 4.0.1 is out and fixes a few issues reported by the community since 4.0.</p>
+
+<ul>
+  <li>When using Ruby 2.7, you won’t get any more warnings in your console when running Jekyll. (This fix is also backported in <a href="https://github.com/jekyll/jekyll/releases/tag/v3.8.7">Jekyll 3.8.7</a>).</li>
+  <li>Liquid variables are now properly cached.</li>
+  <li>Jekyll build will no longer fail for collections with a custom permalink containing static files.</li>
+  <li>Jekyll filters now properly recognize integers.</li>
+</ul>
+
+<p>👀 A <a href="https://github.com/jekyll/jekyll/releases/tag/v4.0.1">release changelog</a> is available for your perusal.</p>
+
+<p>🙏 Many thanks to our contributors without whom this release could not be
+possible: @ashmaroli and <a href="https://github.com/summerisgone">Ivan Gromov</a></p>
+
+<p>Expect more fixes and improvements on the next minor release!</p>
+
+<p>Happy Jekylling!</p>
+:ET

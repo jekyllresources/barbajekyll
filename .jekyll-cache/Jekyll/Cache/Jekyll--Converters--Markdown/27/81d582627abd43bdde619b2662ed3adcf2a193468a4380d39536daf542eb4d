@@ -1,0 +1,58 @@
+I"�<p class="note info"><strong>This guide is for maintainers.</strong> These special people have <strong>write access</strong> to one or more of Jekyll’s repositories and help merge the contributions of others. You may find what is written here interesting, but it’s definitely not for everyone.</p>
+
+<h2 id="code-review">Code Review</h2>
+
+<p>All pull requests should be subject to code review. Code review is a <a href="https://blog.fullstory.com/what-we-learned-from-google-code-reviews-arent-just-for-catching-bugs/">foundational value</a> of good engineering teams. Besides providing validation of correctness, it promotes a sense of community and gives other maintainers understanding of all parts of the code base. In short, code review is crucial to a healthy open source project.</p>
+
+<p><strong>Read our guide for <a href="../reviewing-a-pull-request">Reviewing a pull request</a> before merging.</strong> Notably, the change must have tests if for code, and at least two maintainers must give it an OK.</p>
+
+<h2 id="merging">Merging</h2>
+
+<p>We have <a href="https://github.com/jekyllbot">a helpful little bot</a> which we use to merge pull requests. We don’t use the GitHub.com interface for two reasons:</p>
+
+<ol>
+  <li>You can’t modify anything on mobile (e.g. titles, labels)</li>
+  <li>We like to provide a consistent paper trail in the <code class="language-plaintext highlighter-rouge">History.markdown</code> file for each release</li>
+</ol>
+
+<p>To merge a pull request, leave a comment thanking the contributor, then add the special merge request:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thank you very much for your contribution. Folks like you make this project and community strong. :heart:
+
+@jekyllbot: merge +dev
+</code></pre></div></div>
+
+<p>The merge request is made up of three things:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">@jekyllbot:</code> – this is the prefix our bot looks for when processing commands</li>
+  <li><code class="language-plaintext highlighter-rouge">merge</code> – the command</li>
+  <li><code class="language-plaintext highlighter-rouge">+dev</code> – the category to which the changes belong.</li>
+</ol>
+
+<p>The categories match the headings in the <code class="language-plaintext highlighter-rouge">History.markdown</code> file, and they are:</p>
+
+<ol>
+  <li>Major Enhancements (<code class="language-plaintext highlighter-rouge">+major</code>) – major updates or breaking changes to the code which necessitate a major version bump (v3 ~&gt; v4)</li>
+  <li>Minor Enhancements (<code class="language-plaintext highlighter-rouge">+minor</code>) – minor updates (with the labels <code class="language-plaintext highlighter-rouge">feature</code> or <code class="language-plaintext highlighter-rouge">enhancement</code>) which necessitate a minor version bump (v3.1 ~&gt; v3.2)</li>
+  <li>Bug Fixes (<code class="language-plaintext highlighter-rouge">+bug</code>) – corrections to code which do not change or add functionality, which necessitate a patch version bump (v3.1.0 ~&gt; v3.1.1)</li>
+  <li>Documentation (<code class="language-plaintext highlighter-rouge">+doc</code>) - changes to the documentation found in <code class="language-plaintext highlighter-rouge">docs/_docs/</code></li>
+  <li>Site Enhancements (<code class="language-plaintext highlighter-rouge">+site</code>) – changes to the source of <a href="https://jekyllrb.com">https://jekyllrb.com</a> found in <code class="language-plaintext highlighter-rouge">docs/</code></li>
+  <li>Development Fixes (<code class="language-plaintext highlighter-rouge">+dev</code>) – changes which do not affect user-facing functionality or documentation, such as test fixes or bumping internal dependencies</li>
+  <li>Forward Ports (<code class="language-plaintext highlighter-rouge">+port</code>) — bug fixes applied to a previous version of Jekyll pulled onto <code class="language-plaintext highlighter-rouge">master</code>, e.g. cherry-picked commits from <code class="language-plaintext highlighter-rouge">3-1-stable</code> to <code class="language-plaintext highlighter-rouge">master</code></li>
+</ol>
+
+<p>Once @jekyllbot has merged the pull request, you should see three things:</p>
+
+<ol>
+  <li>A successful merge</li>
+  <li>Addition of labels for the necessary category if they aren’t already applied</li>
+  <li>A commit to the <code class="language-plaintext highlighter-rouge">History.markdown</code> file which adds a note about the change</li>
+</ol>
+
+<p>If you forget the category, that’s just fine. You can always go back and move the line to the proper category header later. The category is always necessary for <code class="language-plaintext highlighter-rouge">jekyll/jekyll</code>, but many plugins have too few changes to necessitate changelog categories.</p>
+
+<h2 id="rejoice">Rejoice</h2>
+
+<p>You did it! Thanks for being a maintainer for one of our official Jekyll projects. Your work means the world to our thousands of users who rely on Jekyll daily. :heart:</p>
+:ET

@@ -1,0 +1,112 @@
+I"� <p>Jekyll’s growing community produces wide variety of themes, plugins, tutorials
+and other resources that can be helpful. Below is a collection of links to
+some of the most popular Jekyll resources.</p>
+
+<h2 id="themes">Themes</h2>
+<ul>
+  <li><a href="https://jamstackthemes.dev/ssg/jekyll/">jamstackthemes.dev</a></li>
+  <li><a href="http://jekyllthemes.org/">jekyllthemes.org</a></li>
+  <li><a href="https://jekyllthemes.io/">jekyllthemes.io</a></li>
+</ul>
+
+<h2 id="plugins">Plugins</h2>
+<ul>
+  <li><a href="https://github.com/topics/jekyll-plugin">jekyll-plugin topic on GitHub</a></li>
+  <li><a href="https://github.com/planetjekyll/awesome-jekyll-plugins">Planet Jekyll</a></li>
+</ul>
+
+<h2 id="guides">Guides</h2>
+
+<ul>
+  <li><a href="/tutorials/home/">Community tutorials</a></li>
+  <li><a href="/docs/continuous-integration/github-actions/">Deploy Jekyll 4 on GitHub Pages</a></li>
+  <li><a href="https://github.com/vercel/vercel/tree/master/examples/jekyll">Deploy Jekyll on Vercel</a></li>
+  <li><a href="https://www.netlify.com/blog/2020/04/02/a-step-by-step-guide-jekyll-4.0-on-netlify/">Deploy Jekyll 4 on Netlify</a></li>
+  <li><a href="https://learn.cloudcannon.com/">CloudCannon Academy</a> is a set of resources created by <a href="https://cloudcannon.com/">CloudCannon</a> to help folks get up and running with Jekyll. They cover all skill levels, and even include some great video tutorials.</li>
+  <li><a href="https://learn.cloudcannon.com/jekyll-cheat-sheet/">Jekyll Cheatsheet</a> is a single-page resource for Jekyll filters, variables, and the like.</li>
+</ul>
+
+<h2 id="integrations">Integrations</h2>
+
+<p>Use a SaaS service as a backend for functionality on your Jekyll site</p>
+
+<h3 id="comments">Comments</h3>
+<ul>
+  <li><a href="https://staticman.net">Staticman</a>: Add user-generated content to a Jekyll site (free and open source)</li>
+  <li><a href="https://www.talkyard.io/blog-comments">Talkyard</a>: Embedded comments for Jekyll and others (free and open source, or hosted serverless)</li>
+</ul>
+
+<h3 id="content-management">Content Management</h3>
+<ul>
+  <li><a href="https://cloudcannon.com/">CloudCannon</a>: The Cloud CMS for Jekyll</li>
+  <li><a href="https://github.com/contentful/jekyll-contentful-data-import">Contentful</a>: Content infrastructure for digital teams</li>
+  <li><a href="https://forestry.io/">Forestry.io</a>: A free Git-based responsive CMS, with content modeling and instant previews.</li>
+  <li><a href="https://www.netlifycms.org/">Netlify CMS</a>: Open source content management for your Git workflow</li>
+  <li><a href="https://www.siteleaf.com/">Siteleaf</a>: Built for developers, Loved by everyone</li>
+  <li><a href="https://www.statictastic.com/">Statictastic</a>: Static site hosting, publishing and content management for teams</li>
+  <li><a href="https://github.com/Kentico/kontent-jekyll">Kentico Kontent</a>: A headless CMS with full control over content presentation</li>
+</ul>
+
+<h3 id="e-commerce">E-commerce</h3>
+<ul>
+  <li><a href="https://www.memberspace.com/integrations/jekyll-membership/">MemberSpace</a>: Add memberships and paywall functionality to a Jekyll site</li>
+  <li><a href="https://snipcart.com/blog/static-site-e-commerce-part-2-integrating-snipcart-with-jekyll">Snipcart</a>: Add a shopping cart to a Jekyll site</li>
+</ul>
+
+<h3 id="forms">Forms</h3>
+<ul>
+  <li><a href="https://getform.io">Getform</a></li>
+  <li><a href="https://www.99inbound.com">99Inbound</a></li>
+  <li><a href="https://www.formingo.co/guides/jekyll?utm_source=github&amp;utm_medium=jekyll-docs&amp;utm_campaign=Jekyll%20Documentation">Formingo</a></li>
+  <li><a href="https://formkeep.com/guides/contact-form-jekyll?utm_source=github&amp;utm_medium=jekyll-docs&amp;utm_campaign=contact-form-jekyll">FormKeep</a></li>
+  <li><a href="https://formspark.io/">Formspark</a></li>
+  <li><a href="https://formspree.io/">Formspree (open source)</a></li>
+  <li><a href="https://formx.stream">formX</a></li>
+  <li><a href="https://getsimpleform.com/">Simple Form</a></li>
+  <li><a href="https://smartforms.dev/">SmartForms</a></li>
+  <li><a href="https://www.typeform.com/templates/c/forms/">Typeform</a></li>
+</ul>
+
+<h3 id="search">Search</h3>
+<ul>
+  <li><a href="https://blog.algolia.com/instant-search-blog-documentation-jekyll-plugin/">Algolia</a>: Add a powerful instant search to your Jekyll site</li>
+  <li><a href="https://docs.bonsai.io/article/217-jekyll">Bonsai Search</a>: The easiest way to use Elasticsearch for your Jekyll site</li>
+  <li><a href="https://cloudsh.com/generators/How-to-setup-search-on-Jekyll/">CloudSh</a>: Website search with a few lines of JavaScript</li>
+</ul>
+
+<h2 id="editors-plugins">Editors plugins</h2>
+
+<ul>
+  <li>Visual Studio Code has <a href="https://marketplace.visualstudio.com/search?term=tag%3Ajekyll&amp;target=VSCode&amp;category=All%20categories&amp;sortBy=Installs">various jekyll related plugins</a> and supports <a href="http://json.schemastore.org/jekyll">autocompletion for configuration file</a>.</li>
+  <li><a href="https://atom.io/packages/jekyll">jekyll-atom</a>: A collection of snippets and tools for Jekyll in Atom</li>
+  <li><a href="https://atom.io/packages/markdown-writer">markdown-writer</a>: An Atom package for Jekyll. It can create new posts/drafts, manage tags/categories, insert link/images and add many useful key mappings.</li>
+  <li><a href="https://github.com/23maverick23/sublime-jekyll">sublime-jekyll</a>: A Sublime Text package for Jekyll static sites. This package should help creating Jekyll sites and posts easier by providing access to key template tags and filters, as well as common completions and a current date/datetime command (for dating posts). You can install this package manually via GitHub, or via <a href="https://packagecontrol.io/packages/Jekyll">Package Control</a>.</li>
+  <li><a href="https://github.com/parkr/vim-jekyll">vim-jekyll</a>: A vim plugin to generate new posts and run <code class="language-plaintext highlighter-rouge">jekyll build</code> all without leaving vim.</li>
+  <li><a href="https://wordpress.org/plugins/wp2jekyll/">WordPress2Jekyll</a>: A WordPress plugin that allows you to use WordPress as your editor and (automatically) export content in to Jekyll. WordPress2Jekyll attempts to marry these two systems together in order to make a site that can be easily managed from all devices.</li>
+</ul>
+
+<h2 id="posts">Posts</h2>
+
+<ul>
+  <li><a href="https://mademistakes.com/articles/using-jekyll-2016/">How I’m using Jekyll in 2016</a></li>
+  <li><a href="https://jekyll-demo.talkyard.io/2018/01/09/installation-instructions.html">Talkyard comments instructions for Jekyll</a></li>
+  <li><a href="https://mademistakes.com/articles/improving-jekyll-static-comments/">Static Comments with Jekyll &amp; Staticman</a></li>
+  <li><a href="https://eduardoboucas.com/blog/2014/11/05/adding-ajax-pagination-to-jekyll.html">Adding Ajax pagination to Jekyll</a></li>
+  <li>
+    <p><a href="http://cartera.me/2010/08/12/about-this-website/">‘About this Website’, by Carter Allen</a></p>
+
+    <blockquote>
+      <p>“Jekyll is everything that I ever wanted in a blogging engine. Really. It isn’t perfect, but what’s excellent about it is that if there’s something wrong, I know exactly how it works and how to fix it. It runs on the your machine only, and is essentially an added”build” step between you and the browser. I coded this entire site in TextMate using standard HTML5 and CSS3, and then at the end I added just a few little variables to the markup. Presto-chango, my site is built and I am at peace with the world.”</p>
+    </blockquote>
+  </li>
+  <li>A way to <a href="https://github.com/rfelix/jekyll_ext">extend Jekyll</a> without forking and modifying the Jekyll gem codebase and some <a href="https://github.com/rfelix/jekyll_ext/wiki/Extensions">portable Jekyll extensions</a> that can be reused and shared.</li>
+  <li><a href="http://numbers.brighterplanet.com/2010/08/09/sharing-rails-views-with-jekyll">Using your Rails layouts in Jekyll</a></li>
+</ul>
+
+<h2 id="forks">Forks</h2>
+
+<ul>
+  <li><a href="https://www.bridgetownrb.com/news/time-to-visit-bridgetown/">Time to Visit Bridgetown</a></li>
+  <li><a href="https://sigpipe.macromates.com/2018/creating-a-faster-jekyll/">Creating a Faster Jekyll</a></li>
+</ul>
+:ET

@@ -1,0 +1,20 @@
+I"�<p>Hey Jekyllites!</p>
+
+<p>Today, we released v3.1.4 in an effort to bring more stability to the v3.1.x series. This bugfix release consists of:</p>
+
+<ul>
+  <li>A fix for <code class="language-plaintext highlighter-rouge">layout</code> in Liquid where values would carry over from one document to the next</li>
+  <li>A fix for <code class="language-plaintext highlighter-rouge">layout</code> in Liquid where a parent layout (e.g. <code class="language-plaintext highlighter-rouge">default</code> or <code class="language-plaintext highlighter-rouge">base</code>) would overwrite the metadata of the child layout (e.g. <code class="language-plaintext highlighter-rouge">post</code> or <code class="language-plaintext highlighter-rouge">special</code>).</li>
+  <li>A fix where <code class="language-plaintext highlighter-rouge">page.excerpt</code> referencing its excerpt would cause an infinite loop of recursive horror.</li>
+  <li>We added <code class="language-plaintext highlighter-rouge">Configuration.from</code> and the great permalink fix from <a href="/news/2016/04/19/jekyll-3-0-4-released/">v3.0.4</a> to the v3.1.x series</li>
+  <li><code class="language-plaintext highlighter-rouge">site.collections</code> in Liquid is now sorted alphabetically by label, so <code class="language-plaintext highlighter-rouge">docs</code> shows up before <code class="language-plaintext highlighter-rouge">posts</code> reliably.</li>
+</ul>
+
+<p>The fixes for <code class="language-plaintext highlighter-rouge">layout</code> may not be seamless for everyone, but we believe they will be the “right thing to do” going forward.</p>
+
+<p>We are alwawys striving to make Jekyll more straight-forward to use. Please do open an issue if you believe an aspect of Jekyll’s user experience isn’t up to par.</p>
+
+<p>For a full history of our changes, <a href="/docs/history/#v3-1-4">see the changelog</a>.</p>
+
+<p>As always, Happy Jekylling!</p>
+:ET

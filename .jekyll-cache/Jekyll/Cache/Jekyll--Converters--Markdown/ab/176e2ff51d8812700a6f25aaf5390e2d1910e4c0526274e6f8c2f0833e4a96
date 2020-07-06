@@ -1,0 +1,5 @@
+I"7<p>Jekyll traverses your site looking for files to process. Any files with
+<a href="/docs/front-matter/">front matter</a> are subject to processing. For each of these
+files, Jekyll makes a variety of data available via <a href="/docs/liquid/">Liquid</a>.
+The following is a reference of the available data.</p>
+:ET

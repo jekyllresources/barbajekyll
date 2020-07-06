@@ -1,0 +1,16 @@
+I"5<p>Jekyll gives you a lot of flexibility to customize how it builds your site. These
+options can either be specified in a <code class="language-plaintext highlighter-rouge">_config.yml</code> or <code class="language-plaintext highlighter-rouge">_config.toml</code> file placed
+in your site’s root directory, or can be specified as flags for the <code class="language-plaintext highlighter-rouge">jekyll</code>
+executable in the terminal.</p>
+
+<ul>
+  <li><a href="/docs/configuration/options/">Configuration Options</a></li>
+  <li><a href="/docs/configuration/default/">Default Configuration</a></li>
+  <li><a href="/docs/configuration/front-matter-defaults/">Front Matter Defaults</a></li>
+  <li><a href="/docs/configuration/environments/">Environments</a></li>
+  <li><a href="/docs/configuration/markdown/">Markdown Options</a></li>
+  <li><a href="/docs/configuration/liquid/">Liquid Options</a></li>
+  <li><a href="/docs/configuration/webrick/">Webrick Options</a></li>
+  <li><a href="/docs/configuration/incremental-regeneration/">Incremental Regeneration</a></li>
+</ul>
+:ET

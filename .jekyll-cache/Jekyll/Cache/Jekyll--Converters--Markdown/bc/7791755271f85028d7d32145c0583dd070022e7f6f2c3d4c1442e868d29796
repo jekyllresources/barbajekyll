@@ -1,0 +1,39 @@
+I")<p>Another one-PR patch update as we continue our quest to destroy all bugs. A
+fairly technical debriefing follows, but the TLDR is that we have updated the
+<code class="language-plaintext highlighter-rouge">uri_escape</code> filter to more closely follow the pre-v3.4.0 behavior.</p>
+
+<p>In <a href="/news/2017/01/18/jekyll-3-4-0-released/">v3.4.0</a>, we
+moved away from using the deprecated
+<a href="https://ruby-doc.org/stdlib-2.3.0/libdoc/uri/rdoc/URI/Escape.html#method-i-encode"><code class="language-plaintext highlighter-rouge">URI.escape</code></a>
+in favor of
+<a href="http://www.rubydoc.info/gems/addressable/Addressable/URI#encode-class_method"><code class="language-plaintext highlighter-rouge">Addressable::URI.encode</code></a>.
+This is what powers our <a href="https://jekyllrb.com/docs/templates/"><code class="language-plaintext highlighter-rouge">uri_escape</code>
+filter</a>.</p>
+
+<p>While this transition was mostly a smooth one, the two methods are not
+identical. While <code class="language-plaintext highlighter-rouge">URI.escape</code> was happy to escape any string,
+<code class="language-plaintext highlighter-rouge">Addressable::URI.encode</code> first turns the string into an <code class="language-plaintext highlighter-rouge">Addressable::URI</code>
+object, and will then escape each component of that object. In most cases, this
+difference was insignificant, but there were a few cases where this caused some
+unintended regressions when encoding colons.</p>
+
+<p>While <strong>Addressable</strong> can understand that something like <code class="language-plaintext highlighter-rouge">"/example :page"</code> is a
+relative URI, without the slash it cannot figure out how to turn
+<code class="language-plaintext highlighter-rouge">"example :page"</code> into an <code class="language-plaintext highlighter-rouge">Addressable::URI</code> object. <code class="language-plaintext highlighter-rouge">URI.escape</code> had no such
+objection. This lead to the following Liquid code working fine in Jekyll 3.3.x
+but breaking in 3.4.0:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="s2">"example :page"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uri_escape</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>This was not an intended consequence of switching to <strong>Addressable</strong>.</p>
+
+<p>Fortunately, the solution was not complicated. <strong>Addressable</strong> has a method
+<a href="http://www.rubydoc.info/gems/addressable/Addressable/URI#normalize_component-class_method"><code class="language-plaintext highlighter-rouge">Addressable::URI.normalize_component</code></a>
+which will simply escape the characters in a string, much like <code class="language-plaintext highlighter-rouge">URI.escape</code>.</p>
+
+<p>Thanks to @cameronmcefee and @FriesFlorian for reporting
+<a href="https://github.com/jekyll/jekyll/issues/5954">this issue</a>.</p>
+
+<p>Happy Jekylling!</p>
+:ET

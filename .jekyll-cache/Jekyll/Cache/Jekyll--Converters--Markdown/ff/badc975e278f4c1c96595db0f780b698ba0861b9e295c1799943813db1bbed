@@ -1,0 +1,20 @@
+I"�<p class="note info"><strong>This guide is for Jekyll contributors and maintainers.</strong> These special people contribute to one or more of Jekyll’s repositories or help merge the contributions of others. You may find what is written here interesting, but it’s definitely not for everyone.</p>
+
+<p>Hello! This is where we document various processes for maintaining Jekyll. Being a maintainer for any Jekyll project is a big responsibility, so we put together some helpful documentation for various tasks you might do as a maintainer.</p>
+
+<ul>
+  <li><a href="affinity-team-captain/">Affinity teams &amp; their captains</a></li>
+  <li><a href="triaging-an-issue/">Triaging an issue</a></li>
+  <li><a href="reviewing-a-pull-request/">Reviewing a pull request</a></li>
+  <li><a href="merging-a-pull-request/">Merging a pull request</a></li>
+  <li><a href="avoiding-burnout/">Avoiding burnout</a></li>
+  <li><a href="special-labels/">Special Labels</a></li>
+  <li><a href="releasing-a-new-version/">Releasing a new version</a></li>
+</ul>
+
+<p>Interested in becoming a maintainer? Here is some documentation for <strong>contributors</strong>:</p>
+
+<ul>
+  <li><a href="becoming-a-maintainer/">Becoming a maintainer</a></li>
+</ul>
+:ET

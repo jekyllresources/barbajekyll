@@ -1,0 +1,30 @@
+I"¢<p><a href="https://www.youtube.com/c/GiraffeAcademy">Giraffe Academy</a> has a series of videos that will walk you through the basics of using Jekyll. In this series youâ€™ll learn everything from installing Jekyll on your computer and setting up your first site, to using more complex features like variables, layouts and conditionals.</p>
+
+<div class="videoWrapper">
+     <iframe src="https://www.youtube.com/embed/T1itpPvFWHI?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<h2 id="list-of-lessons">List of Lessons</h2>
+
+<ol>
+  <li><a href="https://www.youtube.com/watch?v=T1itpPvFWHI&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=1">Introduction to Jekyll (see above)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=WhrU9m82Wm8&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=2">Mac Installation</a></li>
+  <li><a href="https://www.youtube.com/watch?v=LfP7Y9Ja6Qc&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=3">Windows Installation</a></li>
+  <li><a href="https://www.youtube.com/watch?v=pxua_1vyFck&amp;index=4&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Creating a Site</a></li>
+  <li><a href="https://www.youtube.com/watch?v=ZtEbGztktvc&amp;index=5&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Front Matter</a></li>
+  <li><a href="https://www.youtube.com/watch?v=gsYqPL9EFwQ&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=6">Writing Posts</a></li>
+  <li><a href="https://www.youtube.com/watch?v=X8jXkW3k2Jg&amp;index=7&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Working With Drafts</a></li>
+  <li><a href="https://www.youtube.com/watch?v=1na-IWfv08M&amp;index=8&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Creating Pages</a></li>
+  <li><a href="https://www.youtube.com/watch?v=938jDG_YPdc&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=9">Permalinks</a></li>
+  <li><a href="https://www.youtube.com/watch?v=CLCaJJ1zUHU&amp;index=10&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Front Matter Defaults</a></li>
+  <li><a href="https://www.youtube.com/watch?v=NoRS2D-cyko&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=11">Themes</a></li>
+  <li><a href="https://www.youtube.com/watch?v=bDQsGdCWv4I&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=12">Layouts</a></li>
+  <li><a href="https://www.youtube.com/watch?v=nLJBF2KiOZw&amp;index=13&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Variables</a></li>
+  <li><a href="https://www.youtube.com/watch?v=HfcJeRby2a8&amp;index=14&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Includes</a></li>
+  <li><a href="https://www.youtube.com/watch?v=6N1X5XffuUA&amp;index=15&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Looping Through Posts</a></li>
+  <li><a href="https://www.youtube.com/watch?v=iNZBEki_x6o&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=16">Conditionals</a></li>
+  <li><a href="https://www.youtube.com/watch?v=M6b0KmLB-pM&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=17">Data Files</a></li>
+  <li><a href="https://www.youtube.com/watch?v=knWjmVlVpso&amp;index=18&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Static Files</a></li>
+  <li><a href="https://www.youtube.com/watch?v=fqFjuX4VZmU&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&amp;index=19">Hosting on Github Pages</a></li>
+</ol>
+:ET

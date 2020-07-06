@@ -1,0 +1,6 @@
+I"½<p>This release fixes a regression in 3.8 where collections with <code class="language-plaintext highlighter-rouge">published: false</code>
+do not show when using the <code class="language-plaintext highlighter-rouge">--unpublished</code> flag.</p>
+
+<p>Thanks to @philipbelesky for reporting and fixing this issue; collections with
+<code class="language-plaintext highlighter-rouge">published: false</code> now behave the same way as Posts.</p>
+:ET

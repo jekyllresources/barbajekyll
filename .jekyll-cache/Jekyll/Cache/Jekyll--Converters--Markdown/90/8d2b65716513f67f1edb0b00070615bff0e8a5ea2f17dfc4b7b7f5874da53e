@@ -1,0 +1,185 @@
+I"�1<p>This tutorial shows how to use Jekyll to read a CSV and render the data as an HTML table.</p>
+
+<p>This approach will:</p>
+
+<ul>
+  <li>use the CSV’s first row as the HTML table header.</li>
+  <li>use remaining rows for the body of the table.</li>
+  <li>preserve the order of the columns from the original CSV.</li>
+  <li>be flexible enough to work with <em>any</em> valid CSV that is referenced.</li>
+</ul>
+
+<p>There is no need to specify what the names of the columns are, or how many columns there are.
+The trick to this tutorial is that, when we iterate over the row data, we pick up the <em>first row</em>
+and unpack that so we can get the header names.</p>
+
+<p>Follow the steps below to convert a sample CSV of authors into an HTML table.</p>
+
+<h2 id="1-create-a-csv">1. Create a CSV</h2>
+
+<p>Create a CSV file in your <a href="/docs/datafiles/">Data files</a> directory so
+that Jekyll will pick it up. A sample path and CSV data are shown below:</p>
+
+<p><code class="language-plaintext highlighter-rouge">_data/authors.csv</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First name,Last name,Age,Location
+John,Doe,35,United States
+Jane,Doe,29,France
+Jack,Hill,25,Australia
+</code></pre></div></div>
+
+<p>That data file will now be available in Jekyll like this:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">authors</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<h2 id="2-add-a-table">2. Add a table</h2>
+
+<p>Choose an HTML or markdown file where you want your table to be shown.</p>
+
+<p>For example: <code class="language-plaintext highlighter-rouge">table_test.md</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Table test</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<h3 id="inspect-a-row">Inspect a row</h3>
+
+<p>Grab the first row and see what it looks like using the <code class="language-plaintext highlighter-rouge">inspect</code> filter.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{{</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">inspect</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>The result will be a <em>hash</em> (an object consisting of key-value pairs) which looks like this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"First name"</span><span class="o">=&gt;</span><span class="s2">"John"</span><span class="p">,</span>
+  <span class="s2">"Last name"</span><span class="o">=&gt;</span><span class="s2">"Doe"</span><span class="p">,</span>
+  <span class="s2">"Age"</span><span class="o">=&gt;</span><span class="s2">"35"</span><span class="p">,</span>
+  <span class="s2">"Location"</span><span class="o">=&gt;</span><span class="s2">"United States"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that Jekyll <em>does</em> in fact preserve the order here, based on the original CSV.</p>
+
+<h3 id="unpack-a-row">Unpack a row</h3>
+
+<p>A simple solution would be to hardcode the field names when looking up the row values by key.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="nv">row</span><span class="p">[</span><span class="s2">"First name"</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{{</span><span class="w"> </span><span class="nv">row</span><span class="p">[</span><span class="s2">"Last name"</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>But we prefer a solution that will work for <em>any</em> CSV, without specifying the column names upfront.
+So we iterate over the <code class="language-plaintext highlighter-rouge">row</code> object using a <code class="language-plaintext highlighter-rouge">for</code> loop:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">pair</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">pair</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">inspect</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>This produces the following. Note the first item in each pair is the <em>key</em> and the second will be
+the <em>value</em>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>["First name", "John"]
+["Last name", "Doe"]
+["Age", "35"]
+["Location", "United States"]
+</code></pre></div></div>
+
+<h3 id="create-a-table-header-row">Create a table header row</h3>
+
+<p>Here we make a table with a single table row (<code class="language-plaintext highlighter-rouge">tr</code>), made up of table header (<code class="language-plaintext highlighter-rouge">th</code>) tags. We find
+the header name by getting the first element (at index <code class="language-plaintext highlighter-rouge">0</code>) from <code class="language-plaintext highlighter-rouge">pair</code>. We ignore the second
+element as we don’t need the value yet.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;table&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.data.authors</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nb">forloop.first</span><span class="w"> </span><span class="p">%}</span>
+    &lt;tr&gt;
+      <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">pair</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="p">%}</span>
+        &lt;th&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>&lt;/th&gt;
+      <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+    &lt;/tr&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/table&gt;
+
+</code></pre></div></div>
+
+<p>For now, we do not display any content from the second row onwards. We achieve this by using
+<code class="language-plaintext highlighter-rouge">forloop.first</code>, since this will return true for the <em>first</em> row and false otherwise.</p>
+
+<h3 id="add-table-data-rows">Add table data rows</h3>
+
+<p>In this section we add the data rows to the table. Now, we use the second element of <code class="language-plaintext highlighter-rouge">pair</code>
+to find the value.</p>
+
+<p>For convenience, we render using the <code class="language-plaintext highlighter-rouge">tablerow</code> tag - this works like a <code class="language-plaintext highlighter-rouge">for</code> loop, but the inner
+data will be rendered with <code class="language-plaintext highlighter-rouge">tr</code> and <code class="language-plaintext highlighter-rouge">td</code> HTML tags for us. Unfortunately, there is no equivalent for
+the header row, so we must write that out in full, as in the previous section.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+title: Table test
+---
+
+&lt;table&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.data.authors</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nb">forloop.first</span><span class="w"> </span><span class="p">%}</span>
+    &lt;tr&gt;
+      <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">pair</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="p">%}</span>
+        &lt;th&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>&lt;/th&gt;
+      <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+    &lt;/tr&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">tablerow</span><span class="w"> </span><span class="nv">pair</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{{</span><span class="w"> </span><span class="nv">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">endtablerow</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/table&gt;
+</code></pre></div></div>
+
+<p>With the code above, the complete table would look like this:</p>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Age</th>
+    <th>Location</th>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>35</td>
+    <td>United States</td>
+  </tr>
+  <tr>
+    <td>Jane</td>
+    <td>Doe</td>
+    <td>29</td>
+    <td>France</td>
+  </tr>
+  <tr>
+    <td>Jack</td>
+    <td>Hill</td>
+    <td>25</td>
+    <td>Australia</td>
+  </tr>
+</table>
+
+<p>That’s it - you can now turn a CSV into an HTML table using Jekyll.</p>
+
+<h2 id="next-steps">Next steps</h2>
+
+<ul>
+  <li>Change the field names in the CSV.</li>
+  <li>Choose a different CSV.</li>
+  <li>Add CSS styling to your table.</li>
+  <li>Render the table using a JSON or YAML input file.</li>
+</ul>
+:ET

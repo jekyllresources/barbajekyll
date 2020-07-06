@@ -1,0 +1,16 @@
+I"à<p>v3.0.4 is a patch release which fixes the follow two issues:</p>
+
+<ul>
+  <li>Front matter defaults may not have worked for collection documents and posts due to a problem where they were looked up by their URL rather than their path relative to the site source</li>
+  <li>Configuration for the posts permalink might be borked when a user specified a value for <code class="language-plaintext highlighter-rouge">collections.posts.permalink</code> directly. This forced the use of <code class="language-plaintext highlighter-rouge">permalink</code> at the top level, which also affected pages. To configure a permalink <em>just for posts</em>, you can do so with:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">collections</span><span class="pi">:</span>
+  <span class="na">posts</span><span class="pi">:</span>
+    <span class="na">output</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">permalink</span><span class="pi">:</span> <span class="s">/blog/:year/:title/</span></code></pre></figure>
+
+<p>Both of these issues have been resolved. For more information, check out <a href="/docs/history/#v3-0-4">the full history</a>.</p>
+
+<p>Happy Jekylling!</p>
+:ET

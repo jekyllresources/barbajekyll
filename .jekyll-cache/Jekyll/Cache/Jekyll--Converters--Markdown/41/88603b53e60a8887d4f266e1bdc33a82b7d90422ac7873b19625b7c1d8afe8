@@ -1,0 +1,5 @@
+I"<p>This version fixes a bug affecting only v3.0.4 where autoregeneration was
+<em>always</em> disabled when running Jekyll locally. This feature is a huge
+reason why Jekyll (or any static site generator, for that matter) is a joy
+to use. Sorry for the regression!</p>
+:ET

@@ -1,0 +1,4 @@
+I"<p>Another one-PR patch update as we continue our quest to destroy all bugs. A
+fairly technical debriefing follows, but the TLDR is that we have updated the
+<code class="language-plaintext highlighter-rouge">uri_escape</code> filter to more closely follow the pre-v3.4.0 behavior.</p>
+:ET

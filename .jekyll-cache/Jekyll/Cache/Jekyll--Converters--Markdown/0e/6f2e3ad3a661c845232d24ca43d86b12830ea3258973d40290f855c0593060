@@ -1,0 +1,4 @@
+I""<p>In the <code class="language-plaintext highlighter-rouge">build</code> (or <code class="language-plaintext highlighter-rouge">serve</code>) arguments, you can specify a Jekyll environment
+and value. The build will then apply this value in any conditional statements
+in your content.</p>
+:ET

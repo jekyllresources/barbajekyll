@@ -1,0 +1,98 @@
+I"¨&<p>You can create a generator when you need Jekyll to create additional content
+based on your own rules.</p>
+
+<p>A generator is a subclass of <code class="language-plaintext highlighter-rouge">Jekyll::Generator</code> that defines a <code class="language-plaintext highlighter-rouge">generate</code>
+method, which receives an instance of
+<a href="https://github.com/jekyllresources/barbajekyll/blob/master/lib/jekyll/site.rb"><code class="language-plaintext highlighter-rouge">Jekyll::Site</code></a>. The
+return value of <code class="language-plaintext highlighter-rouge">generate</code> is ignored.</p>
+
+<p>Generators run after Jekyll has made an inventory of the existing content, and
+before the site is generated. Pages with front matter are stored as
+instances of
+<a href="https://github.com/jekyllresources/barbajekyll/blob/master/lib/jekyll/page.rb"><code class="language-plaintext highlighter-rouge">Jekyll::Page</code></a>
+and are available via <code class="language-plaintext highlighter-rouge">site.pages</code>. Static files become instances of
+<a href="https://github.com/jekyllresources/barbajekyll/blob/master/lib/jekyll/static_file.rb"><code class="language-plaintext highlighter-rouge">Jekyll::StaticFile</code></a>
+and are available via <code class="language-plaintext highlighter-rouge">site.static_files</code>. See
+<a href="/docs/variables/">the Variables documentation page</a> and
+<a href="https://github.com/jekyllresources/barbajekyll/blob/master/lib/jekyll/site.rb"><code class="language-plaintext highlighter-rouge">Jekyll::Site</code></a>
+for details.</p>
+
+<p>For instance, a generator can inject values computed at build time for template
+variables. In the following example, the template <code class="language-plaintext highlighter-rouge">reading.html</code> has two
+variables <code class="language-plaintext highlighter-rouge">ongoing</code> and <code class="language-plaintext highlighter-rouge">done</code> that are filled in the generator:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Reading</span>
+  <span class="k">class</span> <span class="nc">Generator</span> <span class="o">&lt;</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">Generator</span>
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+      <span class="n">ongoing</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">all</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:ongoing?</span><span class="p">)</span>
+
+      <span class="n">reading</span> <span class="o">=</span> <span class="n">site</span><span class="p">.</span><span class="nf">pages</span><span class="p">.</span><span class="nf">detect</span> <span class="p">{</span><span class="o">|</span><span class="n">page</span><span class="o">|</span> <span class="n">page</span><span class="p">.</span><span class="nf">name</span> <span class="o">==</span> <span class="s1">'reading.html'</span><span class="p">}</span>
+      <span class="n">reading</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'ongoing'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ongoing</span>
+      <span class="n">reading</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'done'</span><span class="p">]</span> <span class="o">=</span> <span class="n">done</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The following example is a more complex generator that generates new pages. In this example, the generator will create a series of files under the <code class="language-plaintext highlighter-rouge">categories</code> directory for each category, listing the posts in each category using the <code class="language-plaintext highlighter-rouge">category_index.html</code> layout.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="k">class</span> <span class="nc">CategoryPageGenerator</span> <span class="o">&lt;</span> <span class="no">Generator</span>
+    <span class="n">safe</span> <span class="kp">true</span>
+
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">site</span><span class="p">.</span><span class="nf">layouts</span><span class="p">.</span><span class="nf">key?</span> <span class="s1">'category_index'</span>
+        <span class="n">dir</span> <span class="o">=</span> <span class="n">site</span><span class="p">.</span><span class="nf">config</span><span class="p">[</span><span class="s1">'category_dir'</span><span class="p">]</span> <span class="o">||</span> <span class="s1">'categories'</span>
+        <span class="n">site</span><span class="p">.</span><span class="nf">categories</span><span class="p">.</span><span class="nf">each_key</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+          <span class="n">site</span><span class="p">.</span><span class="nf">pages</span> <span class="o">&lt;&lt;</span> <span class="no">CategoryPage</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">site</span><span class="p">.</span><span class="nf">source</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span> <span class="n">category</span><span class="p">),</span> <span class="n">category</span><span class="p">)</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1"># A Page subclass used in the `CategoryPageGenerator`</span>
+  <span class="k">class</span> <span class="nc">CategoryPage</span> <span class="o">&lt;</span> <span class="no">Page</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">dir</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span>
+      <span class="vi">@site</span> <span class="o">=</span> <span class="n">site</span>
+      <span class="vi">@base</span> <span class="o">=</span> <span class="n">base</span>
+      <span class="vi">@dir</span>  <span class="o">=</span> <span class="n">dir</span>
+      <span class="vi">@name</span> <span class="o">=</span> <span class="s1">'index.html'</span>
+
+      <span class="nb">self</span><span class="p">.</span><span class="nf">process</span><span class="p">(</span><span class="vi">@name</span><span class="p">)</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">read_yaml</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s1">'_layouts'</span><span class="p">),</span> <span class="s1">'category_index.html'</span><span class="p">)</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'category'</span><span class="p">]</span> <span class="o">=</span> <span class="n">category</span>
+
+      <span class="n">category_title_prefix</span> <span class="o">=</span> <span class="n">site</span><span class="p">.</span><span class="nf">config</span><span class="p">[</span><span class="s1">'category_title_prefix'</span><span class="p">]</span> <span class="o">||</span> <span class="s1">'Category: '</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">category_title_prefix</span><span class="si">}#{</span><span class="n">category</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Generators need to implement only one method:</p>
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code>generate</code></p>
+      </td>
+      <td>
+        <p>Generates content as a side-effect.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>If your generator is contained within a single file, it can be named whatever you want but it should have an <code class="language-plaintext highlighter-rouge">.rb</code> extension. If your generator is split across multiple files, it should be packaged as a Rubygem to be published at https://rubygems.org/. In this case, the name of the gem depends on the availability of the name at that site because no two gems can have the same name.</p>
+
+<p>By default, Jekyll looks for generators in the <code class="language-plaintext highlighter-rouge">_plugins</code> directory. However, you can change the default directory by assigning the desired name to the key <code class="language-plaintext highlighter-rouge">plugins_dir</code> in the config file.</p>
+:ET

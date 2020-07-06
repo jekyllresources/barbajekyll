@@ -1,0 +1,93 @@
+I"�<p>There are tons of great new quality-of-life features you can use in 3.3.
+Three key things you might want to try:</p>
+
+<h3 id="1-themes-can-now-ship-static--dynamic-assets-in-an-assets-directory">1. Themes can now ship static &amp; dynamic assets in an <code class="language-plaintext highlighter-rouge">/assets</code> directory</h3>
+
+<p>In Jekyll 3.2, we shipped the ability to use a theme that was packaged as a
+<a href="http://guides.rubygems.org/">gem</a>. 3.2 included support for includes,
+layouts, and sass partials. In 3.3, we’re adding assets to that list.</p>
+
+<p>In an effort to make theme management a bit easier, any files you put into
+<code class="language-plaintext highlighter-rouge">/assets</code> in your theme will be read in as though they were part of the
+user’s site. This means you can ship SCSS and CoffeeScript, images and
+webfonts, and so on – anything you’d consider a part of the
+<em>presentation</em>. Same rules apply here as in a Jekyll site: if it has YAML
+front matter, it will be converted and rendered. No front matter, and
+it will simply be copied over like a static asset.</p>
+
+<p>Note that if a user has a file of the same path, the theme content will not
+be included in the site, i.e. a user’s <code class="language-plaintext highlighter-rouge">/assets/main.scss</code> will be read and
+processed if present instead of a theme’s <code class="language-plaintext highlighter-rouge">/assets/main.scss</code>.</p>
+
+<p>See our <a href="/docs/themes/#assets">documentation on the subject</a>
+for more info.</p>
+
+<h3 id="2-relative_url-and-absolute_url-filters">2. <code class="language-plaintext highlighter-rouge">relative_url</code> and <code class="language-plaintext highlighter-rouge">absolute_url</code> filters</h3>
+
+<p>Want a clean way to prepend the <code class="language-plaintext highlighter-rouge">baseurl</code> or <code class="language-plaintext highlighter-rouge">url</code> in your config? These
+new filters have you covered. When working locally, if you set your
+<code class="language-plaintext highlighter-rouge">baseurl</code> to match your deployment environment, say <code class="language-plaintext highlighter-rouge">baseurl: "/myproject"</code>,
+then <code class="language-plaintext highlighter-rouge">relative_url</code> will ensure that this baseurl is prepended to anything
+you pass it:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="s2">"/docs/assets/"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">relative_url</span><span class="w"> </span><span class="p">}}</span> =&gt; /myproject/docs/assets
+</code></pre></div></div>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">baseurl</code> is set to <code class="language-plaintext highlighter-rouge">""</code> and therefore yields (never set to
+<code class="language-plaintext highlighter-rouge">"/"</code>):</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="s2">"/docs/assets/"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">relative_url</span><span class="w"> </span><span class="p">}}</span> =&gt; /docs/assets
+</code></pre></div></div>
+
+<p>A result of <code class="language-plaintext highlighter-rouge">relative_url</code> will safely always produce a URL which is
+relative to the domain root. A similar principle applies to <code class="language-plaintext highlighter-rouge">absolute_url</code>.
+It prepends your <code class="language-plaintext highlighter-rouge">baseurl</code> and <code class="language-plaintext highlighter-rouge">url</code> values, making absolute URLs all the
+easier to make:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{{</span><span class="w"> </span><span class="s2">"/docs/assets/"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">absolute_url</span><span class="w"> </span><span class="p">}}</span> =&gt; https://jekyllrb.com/myproject/docs/assets
+</code></pre></div></div>
+
+<h3 id="3-siteurl-is-set-by-the-development-server">3. <code class="language-plaintext highlighter-rouge">site.url</code> is set by the development server</h3>
+
+<p>When you run <code class="language-plaintext highlighter-rouge">jekyll serve</code> locally, it starts a web server, usually at
+<code class="language-plaintext highlighter-rouge">http://localhost:4000</code>, that you use to preview your site during
+development. If you are using the new <code class="language-plaintext highlighter-rouge">absolute_url</code> filter, or using
+<code class="language-plaintext highlighter-rouge">site.url</code> anywhere, you have probably had to create a development config
+which resets the <code class="language-plaintext highlighter-rouge">url</code> value to point to <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</p>
+
+<p>No longer! When you run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, Jekyll will build your site with
+the value of the <code class="language-plaintext highlighter-rouge">host</code>, <code class="language-plaintext highlighter-rouge">port</code>, and SSL-related options. This defaults to
+<code class="language-plaintext highlighter-rouge">url: http://localhost:4000</code>. When you are developing locally, <code class="language-plaintext highlighter-rouge">site.url</code>
+will yield <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</p>
+
+<p>This happens by default when running Jekyll locally. It will not be set if
+you set <code class="language-plaintext highlighter-rouge">JEKYLL_ENV=production</code> and run <code class="language-plaintext highlighter-rouge">jekyll serve</code>. If <code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> is
+any value except <code class="language-plaintext highlighter-rouge">development</code> (its default value), Jekyll will not
+overwrite the value of <code class="language-plaintext highlighter-rouge">url</code> in your config. And again, this only applies
+to serving, not to building.</p>
+
+<h2 id="a-lot-more">A <em>lot</em> more!</h2>
+
+<p>There are dozens of bug fixes and minor improvements to make your Jekyll
+experience better than ever. With every Jekyll release, we strive to bring
+greater stability and reliability to your everyday development workflow.</p>
+
+<p>As always, thanks to our many contributors who contributed countless hours
+of their free time to making this release happen:</p>
+
+<p>Anatoliy Yastreb, Anthony Gaudino, Antonio, Ashwin Maroli, Ben Balter,
+Charles Horn, Chris Finazzo, Daniel Chapman, David Zhang, Eduardo
+Bouças, Edward Thomson, Eloy Espinaco, Florian Thomas, Frank Taillandier,
+Gerardo, Heng Kwokfu, Heng, K. (Stephen), Jeff Kolesky, Jonathan Thornton,
+Jordon Bedwell, Jussi Kinnula, Júnior Messias, Kyle O’Brien, Manmeet Gill,
+Mark H. Wilkinson, Marko Locher, Mertcan GÖKGÖZ, Michal Švácha, Mike
+Kasberg, Nadjib Amar, Nicolas Hoizey, Nicolas Porcel, Parker Moore, Pat
+Hawks, Patrick Marsceill, Stephen Checkoway, Stuart Kent, XhmikosR, Zlatan
+Vasović, mertkahyaoglu, shingo-nakanishi, and vohedge.</p>
+
+<p><a href="/docs/history/#v3-3-0">Full release notes</a> are available
+for your perusal. If you notice any issues, please don’t hesitate to file a
+bug report.</p>
+
+<p>Happy Jekylling!</p>
+:ET

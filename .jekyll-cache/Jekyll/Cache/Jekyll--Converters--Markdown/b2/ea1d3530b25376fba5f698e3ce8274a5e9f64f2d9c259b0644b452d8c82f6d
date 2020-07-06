@@ -1,0 +1,27 @@
+I"�<p>This release squashes a few bugs :bug: :bug: :bug: noticed by a few
+wonderful Jekyll users:</p>
+
+<ul>
+  <li>If your <code class="language-plaintext highlighter-rouge">permalink</code> ended with a <code class="language-plaintext highlighter-rouge">/</code>, your URL didn’t have any extension,
+even if you wanted one</li>
+  <li>We now strip the BOM by default per Ruby’s <code class="language-plaintext highlighter-rouge">IO.open</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">page.dir</code> will not always end in a slash.</li>
+</ul>
+
+<p>We also updated our <a href="/docs/conduct/">Code of Conduct</a> to the latest version of
+the Contributor Covenant. The update includes language to ensure that the
+reporter of the incident remains confidential to non-maintainers and that
+all complaints will result in an appropriate response. I care deeply about
+Jekyll’s community and will do everything in my power to ensure it is a
+welcoming community. Feel free to reach out to me directly if you feel
+there is a way we can improve the community for everyone! If you’re
+interested in more details, <a href="https://github.com/ContributorCovenant/contributor_covenant/blob/v1_4/diffs/1_3_vs_1_4.patch">there is a diff for
+that</a>.</p>
+
+<p>See links to the PR’s on <a href="/docs/history/#v3-1-1">the history page</a>.</p>
+
+<p>Thanks to Jordon Bedwell, chrisfinazzo, Kroum Tzanev, David Celis, and
+Alfred Xing for their commits on this latest release! :sparkles:</p>
+
+<p>Happy Jekylling!</p>
+:ET

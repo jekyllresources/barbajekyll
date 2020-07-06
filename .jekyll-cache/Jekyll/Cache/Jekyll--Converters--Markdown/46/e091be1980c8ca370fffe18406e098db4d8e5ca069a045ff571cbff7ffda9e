@@ -1,0 +1,116 @@
+I"6<blockquote>
+  <p>Bundler provides a consistent environment for Ruby projects by tracking and
+installing the exact gems and versions that are needed.</p>
+</blockquote>
+
+<p><a href="https://bundler.io">Bundler</a> can be a great tool to use with Jekyll. Because it
+tracks dependencies on a per-project basis, it is particularly useful if you
+need to run different versions of Jekyll in different projects.</p>
+
+<p>In addition, because it can (optionally) install dependencies in the project
+folder, it can help you avoid permissions issues you might otherwise run into.
+The usual way to use Jekyll is to install Jekyll to the system’s default gem
+installation directory and then run <code class="language-plaintext highlighter-rouge">jekyll new</code>. In this tutorial, we’ll show
+you how to create a new Jekyll project using Bundler and without installing gems
+outside the project directory.</p>
+
+<div class="note info">
+  <h5>This is not the simplest way to start using Jekyll</h5>
+  <p>
+    This tutorial helps you get Jekyll set up using Bundler, and optionally
+    without any system-wide gem installations. If prefer installing the jekyll
+    command to your default gem installation directory, you might want the
+    <a href="/docs/">Quickstart</a>.
+  </p>
+</div>
+
+<h2 id="before-you-begin">Before You Begin</h2>
+
+<p>To complete this tutorial, you’ll need to have
+<a href="https://www.ruby-lang.org/en/">Ruby</a> and <a href="https://bundler.io/">Bundler</a>
+installed. You can find the installation instructions on their websites.</p>
+
+<h2 id="initialize-bundler">Initialize Bundler</h2>
+
+<p>The first thing to do is create a new directory for your project and run
+<code class="language-plaintext highlighter-rouge">bundle init</code>. This creates a new Bundler project (by creating an empty
+Gemfile).</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-jekyll-website
+<span class="nb">cd </span>my-jekyll-website
+bundle init
+</code></pre></div></div>
+
+<h2 id="configure-bundler-install-path">Configure Bundler Install Path</h2>
+
+<p>This step is optional. In this step, we’re going to configure Bundler to install
+gems in the <code class="language-plaintext highlighter-rouge">./vendor/bundle/</code> project subdirectory. The advantage of doing this
+is that bundler will install gems within your project folder instead of the
+location used by <code class="language-plaintext highlighter-rouge">gem install</code>. This can help you avoid permissions errors you
+might otherwise get during gem installation, depending how you installed Ruby.
+If you skip this step, Bundler will install your dependencies to the location
+used by <code class="language-plaintext highlighter-rouge">gem install</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle config <span class="nb">set</span> <span class="nt">--local</span> path <span class="s1">'vendor/bundle'</span>
+</code></pre></div></div>
+
+<div class="note info">
+  <h5>Bundler Config is Persistent</h5>
+  <p>
+    This step is only required once per project. Bundler saves your config in
+    <code>./.bundle/config</code>, so future gems will be installed to the same
+    location.
+  </p>
+</div>
+
+<h2 id="add-jekyll">Add Jekyll</h2>
+
+<p>Now, we’re going to use Bundler to add Jekyll as a dependency of our new
+project. This command will add the Jekyll gem to our Gemfile and install it to
+the <code class="language-plaintext highlighter-rouge">./vendor/bundle/</code> folder (or your default gem installation directory if you
+didn’t set a custom path).</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add jekyll
+</code></pre></div></div>
+
+<h2 id="create-a-jekyll-scaffold">Create A Jekyll Scaffold</h2>
+
+<p>Now that Jekyll is installed, we can use it to create the scaffolding for our
+site. We need the <code class="language-plaintext highlighter-rouge">--force</code> parameter because our folder isn’t empty - it
+already has some Bundler files in it. We run the <code class="language-plaintext highlighter-rouge">bundle install</code> separately
+because Jekyll gets confused if the Gemfile already exists.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll new <span class="nt">--force</span> <span class="nt">--skip-bundle</span> <span class="nb">.</span>
+bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<h2 id="serve-the-site">Serve the Site</h2>
+
+<p>Your new website is ready! You can serve the website with
+<code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> and visit it at
+<a href="http://127.0.0.1:4000">http://127.0.0.1:4000</a>. From here, you’re ready to
+continue developing the site on your own. All of the normal Jekyll commands are
+available to you, but you should prefix them with <code class="language-plaintext highlighter-rouge">bundle exec</code> so that Bundler
+runs the version of Jekyll that is installed in your project folder.</p>
+
+<h2 id="commit-to-source-control">Commit to Source Control</h2>
+
+<p>If you’re storing your new site in version control, you’ll want to ignore the
+<code class="language-plaintext highlighter-rouge">./vendor/</code> and <code class="language-plaintext highlighter-rouge">./.bundle/</code> folders since they contain user- or
+platform-specific information. New users will be able to install the correct
+dependencies based on <code class="language-plaintext highlighter-rouge">Gemfile</code> and <code class="language-plaintext highlighter-rouge">Gemfile.lock</code>, which should both be checked
+in. You can use this <code class="language-plaintext highlighter-rouge">.gitignore</code> to get started, if you want.</p>
+
+<p><strong>.gitignore</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Ignore metadata generated by Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ignore folders generated by Bundler
+.bundle/
+vendor/
+</code></pre></div></div>
+:ET

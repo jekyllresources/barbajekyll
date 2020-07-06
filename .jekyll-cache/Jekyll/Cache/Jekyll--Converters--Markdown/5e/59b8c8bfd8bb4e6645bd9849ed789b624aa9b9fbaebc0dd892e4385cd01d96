@@ -1,0 +1,11 @@
+I"<p>Upon releasing 3.1.5 and kicking the tires, we noticed a glaring bug: our
+beloved <code class="language-plaintext highlighter-rouge">jsonify</code> filter doesn’t work! With that, our work was cut out for
+us and we decided a 3.1.6 was necessary. This release restores sanity to
+our object-to-JSON generation in Liquid and we hope you enjoy.</p>
+
+<p>For the gory details, see <a href="https://github.com/jekyll/jekyll/pull/4914">the pull
+request</a> or <a href="/docs/history/#v3-1-6">the
+changelog</a>.</p>
+
+<p>Happy Jekylling!</p>
+:ET

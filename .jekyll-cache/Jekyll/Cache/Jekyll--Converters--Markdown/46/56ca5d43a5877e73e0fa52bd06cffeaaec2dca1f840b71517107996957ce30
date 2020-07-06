@@ -1,0 +1,30 @@
+I"�<p>In contrast to <a href="/docs/home/">Docs</a>, Tutorials provide more detailed, narrative instruction that cover a variety of Jekyll topics and scenarios. Tutorials might contain the following:</p>
+
+<ul>
+  <li>Step-by-step processes through particular scenarios or challenges</li>
+  <li>Full walk-throughs using sample data, showing inputs and results from the sample data</li>
+  <li>Detailed explanation about the pros and cons for different Jekyll strategies</li>
+  <li>End-to-end instruction in developing a complete feature on a Jekyll site</li>
+  <li>Instruction that combines various techniques from across the docs</li>
+</ul>
+
+<p>In short, tutorials aren’t the core reference information in docs. They walk users through processes from beginning to end.</p>
+
+<p class="note info">The Tutorials section is new, so there aren’t many tutorials yet. You can add a tutorial here to help populate this section.</p>
+
+<p>Some of these techniques might even guide you through a supporting tool, script, service, or other hack used with your Jekyll site. Feel free to include tutorials involving external services with Jekyll as well. However, note that Jekyll in no way endorses any third-party tools mentioned in tutorials.</p>
+
+<h2 id="how-to-contribute-a-tutorial">How to contribute a tutorial</h2>
+
+<p>We welcome your tutorial contributions. To add your tutorial:</p>
+
+<ol>
+  <li>Fork the Jekyll project by clicking the <strong>Fork</strong> button in the upper-right corner of the <a href="https://github.com/jekyll/jekyll/">jekyll/jekyll project Github repo</a>.</li>
+  <li>Add your tutorial in the <code class="language-plaintext highlighter-rouge">_tutorials</code> collection.</li>
+  <li>Make sure your tutorial has the same front matter items as other tutorial items.</li>
+  <li>Add a reference to your tutorial filename in <code class="language-plaintext highlighter-rouge">_data/tutorials.yml</code>. This allows your tutorial to appear in the Tutorials sidebar.</li>
+  <li>Follow the regular git workflow to submit the pull request.</li>
+</ol>
+
+<p>When you submit your pull request, the Jekyll documentation team will review your contribution and either merge it or suggest edits.</p>
+:ET

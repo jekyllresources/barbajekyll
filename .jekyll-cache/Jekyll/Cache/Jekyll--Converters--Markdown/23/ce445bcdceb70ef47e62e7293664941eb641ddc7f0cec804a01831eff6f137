@@ -1,0 +1,5 @@
+I"Þ<p>As of version <span class="version-badge" title="This feature is available starting version 2.5.0">2.5.0</span>
+, Jekyll can be extended with plugins which provide
+subcommands for the <code class="language-plaintext highlighter-rouge">jekyll</code> executable. This is possible by including the
+relevant plugins in a <code class="language-plaintext highlighter-rouge">Gemfile</code> group called <code class="language-plaintext highlighter-rouge">:jekyll_plugins</code>:</p>
+:ET

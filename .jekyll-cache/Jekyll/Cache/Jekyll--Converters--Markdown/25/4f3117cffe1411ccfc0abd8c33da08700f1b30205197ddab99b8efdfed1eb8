@@ -1,0 +1,84 @@
+I"�<p>Welcome to Jekyll’s step-by-step tutorial. The goal of this tutorial is to take
+you from having some front end web development experience to building your
+first Jekyll site from scratch — not relying on the default gem-based theme.
+Let’s get into it!</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Jekyll is a Ruby program so you need to install Ruby on your machine to begin
+with. Head over to the <a href="/docs/installation/">install guide</a> and follow the
+instructions for your operating system.</p>
+
+<p>With Ruby setup you can install Jekyll by running the following in your
+terminal:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
+</code></pre></div></div>
+
+<p>To create a new <code class="language-plaintext highlighter-rouge">Gemfile</code> to list your project’s dependencies run:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle init
+</code></pre></div></div>
+
+<p>Now edit the <code class="language-plaintext highlighter-rouge">Gemfile</code> and add jekyll as a dependency:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"jekyll"</span>
+</code></pre></div></div>
+
+<p>Finally run <code class="language-plaintext highlighter-rouge">bundle</code> to install jekyll for your project.</p>
+
+<p>You can now prefix all jekyll commands listed in this tutorial with <code class="language-plaintext highlighter-rouge">bundle exec</code>
+to make sure you use the jekyll version defined in your <code class="language-plaintext highlighter-rouge">Gemfile</code>.</p>
+
+<h2 id="create-a-site">Create a site</h2>
+
+<p>It’s time to create a site! Create a new directory for your site, you can name
+it whatever you’d like. Through the rest of this tutorial we’ll refer to this
+directory as “root”.</p>
+
+<p>If you’re feeling adventurous, you can also initialize a Git repository here.
+One of the great things about Jekyll is there’s no database. All content and
+site structure are files which a Git repository can version. Using a repository
+is completely optional but it’s a great habit to get into. You can learn more
+about using Git by reading through the
+<a href="https://guides.github.com/introduction/git-handbook/">Git Handbook</a>.</p>
+
+<p>Let’s add your first file. Create <code class="language-plaintext highlighter-rouge">index.html</code> in the root with the following
+content:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Home<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Hello World!<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="build">Build</h2>
+
+<p>Jekyll is a static site generator so we need Jekyll to build the site
+before we can view it. There are two commands you can run in the root of your site
+to build it:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">jekyll build</code> - Builds the site and outputs a static site to a directory
+called <code class="language-plaintext highlighter-rouge">_site</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">jekyll serve</code> - Does the same thing except it rebuilds any time you make
+a change and runs a local web server at <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</li>
+</ul>
+
+<p>When you’re developing a site you’ll use <code class="language-plaintext highlighter-rouge">jekyll serve</code> as it updates with any
+changes you make.</p>
+
+<p>Run <code class="language-plaintext highlighter-rouge">jekyll serve</code> and go to
+<a href="http://localhost:4000" target="_blank" data-proofer-ignore="">http://localhost:4000</a> in
+your browser. You should see “Hello World!”.</p>
+
+<p>Well, you might be thinking what’s the point in this? Jekyll just copied an
+HTML file from one place to another. Well patience young grasshopper, there’s
+still much to learn!</p>
+:ET

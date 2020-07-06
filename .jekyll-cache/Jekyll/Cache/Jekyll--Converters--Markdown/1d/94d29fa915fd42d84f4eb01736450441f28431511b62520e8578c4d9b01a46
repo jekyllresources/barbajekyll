@@ -1,0 +1,16 @@
+I"4<p>You can provide custom headers for your site by adding them to <code class="language-plaintext highlighter-rouge">_config.yml</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># File: _config.yml</span>
+<span class="na">webrick</span><span class="pi">:</span>
+  <span class="na">headers</span><span class="pi">:</span>
+    <span class="na">My-Header</span><span class="pi">:</span> <span class="s">My-Value</span>
+    <span class="na">My-Other-Header</span><span class="pi">:</span> <span class="s">My-Other-Value</span>
+</code></pre></div></div>
+
+<h3 id="defaults">Defaults</h3>
+
+<p>Jekyll provides by default <code class="language-plaintext highlighter-rouge">Content-Type</code> and <code class="language-plaintext highlighter-rouge">Cache-Control</code> response
+headers: one dynamic in order to specify the nature of the data being served,
+the other static in order to disable caching so that you don’t have to fight
+with Chrome’s aggressive caching when you are in development mode.</p>
+:ET

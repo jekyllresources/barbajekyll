@@ -1,0 +1,4 @@
+I"ý<p>When building a Jekyll site with GitHub Pages, the standard flow is restricted for security reasons
+and to make it simpler to get a site setup. For more control over the build and still host the site
+with GitHub Pages you can use GitHub Actions.</p>
+:ET

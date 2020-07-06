@@ -1,0 +1,4 @@
+I"G<p>Coming just 10 days after the release of v1.1.0, v1.1.1 is out with a patch for
+the nasty excerpt inception bug (<a href="https://github.com/jekyllresources/barbajekyll/issues/1339">#1339</a>) and
+non-zero exit codes for invalid commands (<a href="https://github.com/jekyllresources/barbajekyll/issues/1338">#1338</a>).</p>
+:ET

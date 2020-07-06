@@ -1,0 +1,5 @@
+I"h<p>As work continues on Jekyll 2.0.0, we felt it was important to address two key
+issues of Jekyll 1.4.3, namely the <code class="language-plaintext highlighter-rouge">safe_yaml</code> dependency below 1.0 and the
+inability to use Jekyll 1.4.3 on Windows due to a <a href="https://github.com/jekyll/jekyll/issues/1948">fun issue with path sanitizing</a>.</p>
+
+:ET

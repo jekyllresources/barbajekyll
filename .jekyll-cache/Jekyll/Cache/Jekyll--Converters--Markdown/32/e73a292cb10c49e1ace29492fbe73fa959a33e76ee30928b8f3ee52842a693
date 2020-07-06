@@ -1,0 +1,18 @@
+I"o<p>Hi Jekyllers,</p>
+
+<p>We have patched a <strong>critical vulnerability</strong> reported to GitHub a couple of weeks ago and have released a set of new gems to
+bring that patch to you. The vulnerability allowed arbitrary file reads with the cunning use of the <code class="language-plaintext highlighter-rouge">include:</code> setting in the
+config file.</p>
+
+<p>By simply including a symlink in the <code class="language-plaintext highlighter-rouge">include</code> array allowed the symlinked file to be read into the build when they shouldn’t
+actually be read in any circumstance.  
+Further details regarding the patch can be viewed at the <a href="https://github.com/jekyllresources/barbajekyll/pull/7224">pull request URL</a></p>
+
+<p>The patch has been released as versions <code class="language-plaintext highlighter-rouge">3.6.3</code>, <code class="language-plaintext highlighter-rouge">3.7.4</code> and <code class="language-plaintext highlighter-rouge">3.8.4</code>.  
+Thanks to @parkr <code class="language-plaintext highlighter-rouge">v3.7.4</code> was released a couple of weeks prior and has been bundled with <code class="language-plaintext highlighter-rouge">github-pages-v192</code>.</p>
+
+<p>Please keep in mind that this issue affects <em>all previously released Jekyll versions</em>. If you have not had
+a good reason to upgrade to <code class="language-plaintext highlighter-rouge">3.6</code>, <code class="language-plaintext highlighter-rouge">3.7</code> or <code class="language-plaintext highlighter-rouge">3.8</code> yet, we advise that you do so at the earliest.</p>
+
+<p>As always, Happy Jekylling! :sparkles:</p>
+:ET

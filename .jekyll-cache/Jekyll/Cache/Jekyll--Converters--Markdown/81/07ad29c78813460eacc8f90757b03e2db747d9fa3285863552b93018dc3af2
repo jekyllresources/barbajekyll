@@ -1,0 +1,23 @@
+I"A<h2 id="getting-help">Getting Help</h2>
+
+<p><strong>Jekyll’s issue tracker is not a support forum.</strong></p>
+
+<p>If you’re looking for support for Jekyll, there are a lot of options:</p>
+
+<ul>
+  <li>Read <a href="https://jekyllrb.com/docs/home/">Jekyll Documentation</a></li>
+  <li>If you have a question about using Jekyll, start a discussion on <a href="https://talk.jekyllrb.com/">Jekyll Forum</a> or <a href="https://stackoverflow.com/questions/tagged/jekyll">StackOverflow</a></li>
+  <li>Chat with Jekyllers — Join <a href="https://gitter.im/jekyll/jekyll">our Gitter channel</a> or <a href="irc:irc.freenode.net/jekyll">our IRC channel on Freenode</a></li>
+</ul>
+
+<p>There are a bunch of helpful community members on these services that should be willing to point you in the right direction.</p>
+
+<h2 id="report-a-bug">Report a bug</h2>
+
+<ul>
+  <li>If you think you’ve found a bug within a Jekyll plugin, open an issue in that plugin’s repository — First <a href="https://rubygems.org/">look for the plugin on rubygems</a> then click on the <code class="language-plaintext highlighter-rouge">Homepage</code> link to access the plugin repository.</li>
+  <li>If you think you’ve found a bug within Jekyll itself, <a href="https://github.com/jekyll/jekyll/issues/new">open an issue</a>.</li>
+</ul>
+
+<p>Happy Jekyllin’!</p>
+:ET

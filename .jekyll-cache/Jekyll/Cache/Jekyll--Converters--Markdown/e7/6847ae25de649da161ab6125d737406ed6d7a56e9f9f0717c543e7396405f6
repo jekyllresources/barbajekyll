@@ -1,0 +1,13 @@
+I"I<p>Hello! We have a bugfix release of Jekyll hot off the presses for you. Key
+fixes to call out:</p>
+
+<ol>
+  <li>Only warn about auto-regeneration issues on Windows instead of disabling</li>
+  <li>Exclude very specific <code class="language-plaintext highlighter-rouge">vendor/</code> subdirectories instead of all of <code class="language-plaintext highlighter-rouge">vendor/</code></li>
+  <li>Allow permalink templates to have plaintext underscores</li>
+</ol>
+
+<p>..and lots more! Check out the <a href="/docs/history/#v3-3-1">full history for more</a>.</p>
+
+<p>Happy Jekylling!</p>
+:ET

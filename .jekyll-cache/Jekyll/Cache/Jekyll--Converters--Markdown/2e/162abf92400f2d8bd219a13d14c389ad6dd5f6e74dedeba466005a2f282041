@@ -1,0 +1,41 @@
+I"<p>Jekyll is written in Ruby. If you’re new to Ruby, this page is to help you get
+up to speed with some of the terminology.</p>
+
+<h2 id="gems">Gems</h2>
+
+<p>A gem is code you can include in Ruby projects. It allows you to package up functionality and share it across other projects or with other people. Gems can perform functionality such as:</p>
+
+<ul>
+  <li>Converting a Ruby object to JSON</li>
+  <li>Pagination</li>
+  <li>Interacting with APIs such as GitHub</li>
+  <li>Jekyll itself is a gem as well as many Jekyll plugins including
+<a href="https://github.com/jekyll/jekyll-feed">jekyll-feed</a>,
+<a href="https://github.com/jekyll/jekyll-seo-tag">jekyll-seo-tag</a> and
+<a href="https://github.com/jekyll/jekyll-archives">jekyll-archives</a>.</li>
+</ul>
+
+<h2 id="gemfile">Gemfile</h2>
+
+<p>A <code class="language-plaintext highlighter-rouge">Gemfile</code> is a list of gems required for your site. For a simple Jekyll site it might look something like this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="n">gem</span> <span class="s2">"jekyll"</span>
+
+<span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s2">"jekyll-feed"</span>
+  <span class="n">gem</span> <span class="s2">"jekyll-seo-tag"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="bundler">Bundler</h2>
+
+<p>Bundler installs the gems in your <code class="language-plaintext highlighter-rouge">Gemfile</code>. It’s not a requirement for you to use a <code class="language-plaintext highlighter-rouge">Gemfile</code> and <code class="language-plaintext highlighter-rouge">bundler</code> however it’s highly recommended as it ensures you’re running the same version of Jekyll and Jekyll plugins across different environments.</p>
+
+<p><code class="language-plaintext highlighter-rouge">gem install bundler</code> installs <a href="https://rubygems.org/gems/bundler">Bundler</a>. You only need to install it once — not every time you create a new Jekyll project. Here are some additional details:</p>
+
+<p>If you’re using a <code class="language-plaintext highlighter-rouge">Gemfile</code> you would first run <code class="language-plaintext highlighter-rouge">bundle install</code> to install the gems, then <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> to build your site. This guarantees you’re using the gem versions set in the <code class="language-plaintext highlighter-rouge">Gemfile</code>. If you’re not using a <code class="language-plaintext highlighter-rouge">Gemfile</code> you can just run <code class="language-plaintext highlighter-rouge">jekyll serve</code>.</p>
+
+<p>For more information about how to use Bundler in your Jekyll project, this <a href="/tutorials/using-jekyll-with-bundler/">tutorial</a> should provide answers to the most common questions and explain how to get up and running quickly.</p>
+:ET
