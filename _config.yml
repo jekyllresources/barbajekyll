@@ -5,7 +5,7 @@ description: Transform your plain text into static websites and blogs
 url: https://jekyllresources.github.io/barbajekyll
 repository: https://github.com/jekyllresources/barbajekyll
 # baseurl: barbajekyll
-# source: ./barbajekyll
+source: ./barbajekyll
 timezone: America/Los_Angeles
 lang: en-US
 twitter:
