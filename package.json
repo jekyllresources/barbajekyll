@@ -56,7 +56,8 @@
     "gsap": "^3.3.4"
   },
   "scripts": {
-    "test": "test"
+    "start": "./barbajekyll/node_modules/.bin/webpack --watch | bundle exec jekyll serve --livereload --incremental",
+    "build": "./barbajekyll/node_modules/.bin/webpack | bundle exec jekyll build"
   },
   "repository": {
     "type": "git",
