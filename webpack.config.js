@@ -6,7 +6,7 @@ module.exports = {
   entry: path.join(__dirname, "webpack", "main"),
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "js"),
+    path: path.resolve(__dirname, "barbajekyll/js"),
   },
   module: {
     rules: [
